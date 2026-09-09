@@ -6,7 +6,7 @@ import Card from "@/components/Card";
 import { getPosts } from "@/sanity/client";
 
 export const metadata = {
-  title: "Engineering Blog & Build Logs | Abdullah",
+  title: "Engineering Blog and Build Notes | Abdullah",
   description:
     "Practical notes and architectural build logs from developing web applications, point of sale software, and database systems.",
 };
@@ -24,17 +24,17 @@ export default async function BlogPage() {
           <div className="max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Build Logs &amp; Technical Notes
+              Build Notes and Lessons
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
-              Engineering Notes from Real Builds
+              Software Notes from Real Projects
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed font-normal">
-              Firsthand build logs and technical decisions from developing
-              production web apps and business software. Grounded in real code
-              and practical lessons.
+              Practical build notes and technical decisions from developing web
+              applications and business software. Grounded in actual production
+              code and lessons learned on the job.
             </p>
           </div>
         </Container>
@@ -82,7 +82,7 @@ export default async function BlogPage() {
                     </p>
 
                     <div className="pt-3 flex items-center text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-                      <span>Read build log</span>
+                      <span>Read full note</span>
                       <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>

@@ -13,20 +13,26 @@ export interface CaseStudy {
   title: string;
   slug: { current: string };
   summary: string;
+  plainSummary: string;
   problem: string;
+  problemTechnical?: string;
   approach: string;
+  approachTechnical?: string;
   result: string;
+  resultTechnical?: string;
   techStack: string[];
   coverImage?: any;
   order?: number;
   liveUrl?: string;
   githubUrl?: string;
+  videoUrl?: string;
 }
 
 export interface Post {
   _id: string;
   title: string;
   slug: { current: string };
+  plainSummary: string;
   excerpt: string;
   body: any;
   publishedAt: string;
@@ -53,16 +59,24 @@ export function urlFor(source: any) {
 export const fallbackCaseStudies: CaseStudy[] = [
   {
     _id: "case-study-pos-shop",
-    title: "Perfect Traders — Point of Sale & Inventory Management System",
+    title: "Perfect Traders: Point of Sale and Inventory Management System",
     slug: { current: "pos-shop" },
     summary:
-      "A fast, responsive Point of Sale and inventory platform tailored for commercial wholesale and retail counter operations with automated receivables, payables, and on-demand PDF receipts.",
+      "A fast, dependable point-of-sale system built for wholesale and retail counter operations. It tracks inventory automatically, manages customer credit, and creates instant printed receipts.",
+    plainSummary:
+      "Perfect Traders needed a reliable way to ring up sales and manage wholesale inventory without relying on paper ledgers. I built a custom point-of-sale system that runs in any web browser, updates stock counts as items are sold, and tracks customer credit automatically. Today, the store uses this platform daily to process customer orders and issue instant receipts without bookkeeping errors.",
     problem:
-      "A commercial wholesale and retail counter operation struggled with manual paper ledgers and disconnected spreadsheets. Cashiers had difficulty calculating split customer payments, tracking partial disbursements to suppliers, and maintaining accurate real-time inventory counts. Manual reconciliation led to frequent discrepancy errors between cash drawer counts and recorded customer credit, while generating physical invoices caused counter bottlenecks during peak transaction hours.",
+      "The business was managing customer sales, incoming supplier deliveries, and customer credit using physical paper notebooks. Cashiers frequently spent several minutes per order manually calculating partial payments and outstanding balances for regular customers. This created long lines at the checkout counter, discrepancies between recorded stock and actual shelf inventory, and hours of frustrating reconciliation work at the close of business every day.",
+    problemTechnical:
+      "Technical context: Paper ledgers and disconnected spreadsheets lacked atomic transaction guarantees, causing ledger drift between cash drawer totals, customer receivables, and inventory counts.",
     approach:
-      "Engineered a dedicated Point of Sale application using Next.js 14 App Router, Supabase (PostgreSQL 15+), and Tailwind CSS. To guarantee absolute financial and inventory integrity, calculation logic was pushed directly into the database layer using PostgreSQL stored procedures and triggers:\n\n• Atomic Inventory Synchronization: Database triggers automatically adjust stock counts and log audit movements upon purchase and sale completions.\n• Automated Balance Calculations: Database procedures (pos_recalc_sale and pos_recalc_purchase) compute line totals, cash paid, amounts due, and statuses (paid, partial, credit) without relying on client-side state.\n• Client-Side PDF Generation: Integrated jsPDF to synthesize formatted, print-ready customer receipts directly in the cashier's browser, eliminating storage bucket bloat and avoiding recurring cloud file storage costs.\n• Dual-Direction Ledgering: Built dedicated customer receivables and supplier payables workflows to track partial payments, prevent overpayment, and log cash inflows/outflows accurately.",
+      "I built a clean, browser-based counter application connected to a secure database that handles all calculations automatically:\n\n• Automatic Stock Adjustment: The moment a sale is completed, inventory numbers update immediately so cashiers always know what is on hand and never oversell.\n• Customer Credit and Supplier Balances: The system records whether a sale was paid in full, taken on credit, or partially paid with cash. It recalculates remaining balances instantly without manual math.\n• Instant Browser Receipts: Invoices and receipts generate right inside the cashier's web browser, allowing staff to print or download receipts in seconds without paying recurring cloud file-storage fees.",
+    approachTechnical:
+      "Technical implementation: Built with Next.js 14 App Router, Supabase, and PostgreSQL. Critical transactional logic was moved directly into PostgreSQL functions and triggers (pos_adjust_inventory, pos_recalc_sale, pos_recalc_purchase) to enforce single-source-of-truth calculations. Client-side PDF synthesis was implemented using jsPDF to eliminate cloud storage costs.",
     result:
-      "Successfully deployed the platform to production on Vercel for live business operations. The system eliminated manual calculation errors by enforcing single-source-of-truth balances at the PostgreSQL level. Cashiers can complete sales and issue instantaneous PDF receipts in seconds, while business owners maintain real-time visibility over total revenue, receivables, payables, and stock levels through the live dashboard.",
+      "The system is deployed and in active daily use for commercial wholesale and retail counter operations. Cashiers can ring up sales and hand customers print-ready receipts in seconds. Manual arithmetic errors have been eliminated, and the business owner has a clear, real-time overview of daily revenue, customer credit owed, and active inventory levels from any device.",
+    resultTechnical:
+      "Technical outcome: Production deployment on Vercel with zero database desync issues. Free-tier cloud architecture maintained by eliminating server-side binary storage.",
     techStack: [
       "Next.js 14",
       "React",
@@ -75,6 +89,7 @@ export const fallbackCaseStudies: CaseStudy[] = [
     ],
     liveUrl: "https://perfecttraders.vercel.app/",
     githubUrl: "https://github.com/abdullah-butt-dev/pos-shop",
+    videoUrl: "/pos-real-demo.mp4",
     order: 1,
   },
 ];
@@ -83,10 +98,12 @@ export const fallbackPosts: Post[] = [
   {
     _id: "post-pos-database-triggers",
     title:
-      "Why We Pushed Inventory & Payment Balances to PostgreSQL Triggers in POS Shop",
+      "Why We Moved Inventory and Balance Calculations Directly into the Database",
     slug: { current: "postgres-triggers-inventory-integrity" },
+    plainSummary:
+      "Plain-language summary: In a busy retail store, letting a website screen calculate order totals and stock can cause mistakes when multiple cashiers sell items at the same time. This article explains how moving that math directly into the database guarantees accurate numbers every time.",
     excerpt:
-      "A build-log on why computing financial totals and inventory movements in application code causes race conditions in retail operations, and how PostgreSQL triggers solved it in POS Shop.",
+      "In a busy retail store, letting a website screen calculate order totals and stock can cause mistakes when multiple cashiers sell items at the same time. Here is why we made the database handle calculations directly.",
     publishedAt: "2026-09-05T10:00:00.000Z",
     readingTime: "5 min read",
     body: [
@@ -96,7 +113,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "When building Perfect Traders—a Point of Sale system for wholesale and retail counter operations—one of the earliest architectural decisions was where to calculate financial balances and update stock quantities.",
+            text: "When building the Perfect Traders point-of-sale system for retail and wholesale counter operations, the most critical decision was where to calculate money totals and inventory numbers.",
           },
         ],
       },
@@ -106,7 +123,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "The Danger of Application-Layer Calculations in Retail",
+            text: "The Problem with Doing Math in the Web Browser",
           },
         ],
       },
@@ -116,7 +133,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "In many web tutorials, when an order is placed, the frontend or API route calculates the line item totals, deducts stock with a separate UPDATE query, and computes the customer's remaining balance. In a real shop with fast-paced counter sales or multiple tabs open, this approach is fragile. Network dropouts, concurrent sales of the same limited inventory, or partial updates can leave the database in an inconsistent state.",
+            text: "In many simple websites, when a customer buys an item, the web page itself calculates the total, sends an update to change the stock, and figures out the customer's remaining balance. In a real shop with fast-paced counter sales or multiple open registers, this easily leads to mistakes. If the internet drops for two seconds, or two cashiers sell the last bag of rice at the exact same moment, the numbers in the system no longer match what is on the shelf.",
           },
         ],
       },
@@ -126,7 +143,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Enforcing Integrity with Database Procedures",
+            text: "Letting the Database Guard the Numbers",
           },
         ],
       },
@@ -136,7 +153,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "For POS Shop, we moved this responsibility directly into PostgreSQL using Supabase stored procedures and triggers (pos_adjust_inventory, pos_recalc_sale, and pos_recalc_purchase). When a sale record is inserted or modified, PostgreSQL recalculates the exact amount paid, balance due, and updates stock atomically within the same transaction.",
+            text: "For the POS Shop, we moved all balance math and stock deductions directly into the database system (using PostgreSQL triggers in Supabase). When an order is entered, the database itself recalculates the cash collected, updates remaining customer credit, and deducts the inventory items in a single, protected step. Even if a cashier's browser window closes abruptly, the recorded numbers remain completely accurate.",
           },
         ],
       },
@@ -146,7 +163,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "If a system's financial records or stock counts can disagree with reality, no amount of UI polish will save the user experience. The database must remain the single source of truth.",
+            text: "If a business system cannot guarantee that stock counts and cash balances match reality, fancy screen animations will not help. The database must remain the single source of truth.",
           },
         ],
       },
@@ -156,7 +173,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Client-Side PDF Synthesis",
+            text: "Instant Receipts without Monthly Storage Bills",
           },
         ],
       },
@@ -166,7 +183,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Another key choice was handling receipts. Instead of generating PDFs on a server or saving binary files into a cloud storage bucket, we implemented client-side receipt generation with jsPDF. The browser renders the print-ready invoice on the fly from the validated sale data. This ensures instant customer receipts without consuming cloud storage quotas or paying unnecessary file-hosting fees.",
+            text: "Another practical choice was how to handle customer receipts. Instead of creating PDF files on a remote server and storing thousands of invoice files on expensive cloud storage, we programmed the web browser to build and format the receipt on demand using jsPDF. The receipt prints immediately at the counter, and the business pays zero monthly file-storage fees.",
           },
         ],
       },
@@ -176,7 +193,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Designing custom software for local businesses requires prioritizing reliability and low operational overhead. Pushing transactional rules to PostgreSQL and avoiding unnecessary third-party services delivered a fast, zero-fuss counter experience.",
+            text: "Custom software for local businesses works best when it is straightforward, durable, and inexpensive to run. Putting the core rules into the database and keeping the interface fast gave this store a dependable register that runs all day without hiccups.",
           },
         ],
       },
@@ -184,7 +201,6 @@ export const fallbackPosts: Post[] = [
   },
 ];
 
-// Query Sanity or fallback
 export async function getCaseStudies(): Promise<CaseStudy[]> {
   if (!isSanityConfigured) {
     return fallbackCaseStudies;
@@ -195,12 +211,19 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
       title,
       slug,
       summary,
+      plainSummary,
       problem,
+      problemTechnical,
       approach,
+      approachTechnical,
       result,
+      resultTechnical,
       techStack,
       coverImage,
-      order
+      order,
+      liveUrl,
+      githubUrl,
+      videoUrl
     }`;
     const data = await client.fetch<CaseStudy[]>(query);
     if (!data || data.length === 0) return fallbackCaseStudies;
@@ -229,12 +252,19 @@ export async function getCaseStudyBySlug(
       title,
       slug,
       summary,
+      plainSummary,
       problem,
+      problemTechnical,
       approach,
+      approachTechnical,
       result,
+      resultTechnical,
       techStack,
       coverImage,
-      order
+      order,
+      liveUrl,
+      githubUrl,
+      videoUrl
     }`;
     const data = await client.fetch<CaseStudy | null>(query, { slug });
     if (!data) {
@@ -263,6 +293,7 @@ export async function getPosts(): Promise<Post[]> {
       _id,
       title,
       slug,
+      plainSummary,
       excerpt,
       body,
       publishedAt,
@@ -290,6 +321,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       _id,
       title,
       slug,
+      plainSummary,
       excerpt,
       body,
       publishedAt,

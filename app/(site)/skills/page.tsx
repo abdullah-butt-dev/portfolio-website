@@ -1,118 +1,103 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Layers,
-  Database,
-  Terminal,
-  GitBranch,
-  ArrowRight,
-  Code2,
-  Server,
-  Zap,
-} from "lucide-react";
+import { Layers, Database, Terminal, ArrowRight } from "lucide-react";
 import Container from "@/components/Container";
-import Section from "@/components/Section";
 import Card from "@/components/Card";
 
 export const metadata = {
-  title: "Skills & Technical Stack | Abdullah — Full-Stack Developer",
+  title: "Skills and Technical Capabilities | Abdullah: Full-Stack Developer",
   description:
     "Core full-stack development skills: Next.js, React, PostgreSQL, Node.js, Express, Supabase, Tailwind CSS, and Git/GitHub.",
 };
 
 const skillCategories = [
   {
-    name: "Frontend Development",
+    name: "User Interface and Frontend",
     icon: Layers,
     description:
-      "Building responsive, mobile-first user interfaces with modern React primitives.",
+      "Creating responsive, fast-loading screens that customers and employees find effortless to use.",
     skills: [
       {
         name: "Next.js",
-        level: "Primary Framework",
+        level: "Primary Application Framework",
         context:
-          "App Router, Server Components, SSR, fast page loading and API routes",
+          "Builds fast websites and web portals that load in seconds on both phones and computers.",
       },
       {
         name: "React",
-        level: "Core Library",
+        level: "Interactive Screen Library",
         context:
-          "Component architecture, hooks, state management, client performance",
+          "Powers live registers, shopping carts, and dynamic screens that update without page refreshes.",
       },
       {
         name: "Tailwind CSS",
-        level: "Design & Styling",
+        level: "Design and Mobile Layouts",
         context:
-          "Utility-first design, clean dark palettes, mobile-first responsive layouts",
+          "Ensures every page fits cleanly on smartphones, tablets, and wide counter monitors.",
       },
       {
         name: "TypeScript",
-        level: "Language",
+        level: "Reliable Code Logic",
         context:
-          "Type-safe interfaces, API payload validation, zero runtime type errors",
+          "Catches mistakes before software is published, preventing unexpected crashes during business hours.",
       },
     ],
   },
   {
-    name: "Backend & Databases",
+    name: "Data and Business Systems",
     icon: Database,
     description:
-      "Designing reliable relational schemas, transactional procedures, and REST APIs.",
+      "Setting up secure electronic record systems, automated billing, and reliable data storage.",
     skills: [
       {
         name: "PostgreSQL",
-        level: "Primary Relational DB",
+        level: "Core Relational Database",
         context:
-          "Complex queries, stored procedures, triggers for atomic inventory and accounting",
+          "The digital filing cabinet for your sales, customer credit, and inventory. Keeps numbers accurate automatically.",
       },
       {
         name: "Supabase",
-        level: "Backend-as-a-Service",
+        level: "Database and User Accounts",
         context:
-          "Database hosting, PostgreSQL triggers, GoTrue authentication, realtime listeners",
+          "Handles staff logins, data backup, and connects your database to your web browser securely.",
       },
       {
-        name: "Node.js",
-        level: "Runtime",
-        context: "Server-side logic, API endpoints, npm ecosystem",
+        name: "Node.js and Express",
+        level: "Backend Logic and APIs",
+        context:
+          "Runs calculations and connects your front-end register to inventory systems and payment gateways.",
       },
       {
-        name: "Express",
-        level: "Backend Framework",
+        name: "Client-Side PDF Generation (jsPDF)",
+        level: "Document Synthesis",
         context:
-          "RESTful API services, routing, and custom authentication middleware",
+          "Prints receipts and invoices directly in the cashier browser, eliminating recurring cloud storage fees.",
       },
     ],
   },
   {
-    name: "Developer Tooling & Workflow",
+    name: "Workflow and Maintenance",
     icon: Terminal,
     description:
-      "Tools and practices ensuring clean codebases, continuous deployment, and easy content management.",
+      "Tools and practices ensuring safe updates, version history, and client-controlled content.",
     skills: [
       {
-        name: "Git & GitHub",
-        level: "Version Control",
+        name: "Git and GitHub",
+        level: "Version Tracking and Security",
         context:
-          "Branch management, pull requests, semantic commit history, and CI workflows",
+          "Maintains a full backup of all code changes and enables safe testing before updating live store systems.",
       },
       {
         name: "Sanity CMS",
-        level: "Headless Content",
+        level: "Content Management Studio",
         context:
-          "Structured content schemas, embedded Sanity Studio for client-managed blogs and case studies",
+          "Allows business owners to update case studies and announcements without needing to write code.",
       },
       {
-        name: "Vercel",
-        level: "Deployment & Edge",
+        name: "Vercel Edge Hosting",
+        level: "Global Deployment",
         context:
-          "Production continuous deployment, edge network caching, custom domains",
-      },
-      {
-        name: "jsPDF",
-        level: "Client Synthesis",
-        context:
-          "On-the-fly PDF invoice and receipt generation without consuming cloud storage quotas",
+          "Serves web applications reliably with high uptime and rapid worldwide page speeds.",
       },
     ],
   },
@@ -127,16 +112,24 @@ export default function SkillsPage() {
           <div className="max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Technical Stack
+              Technical Stack and Capability
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
-              Skills &amp; Technology Matrix
+              Skills and Capabilities
             </h1>
 
-            <p className="text-lg text-slate-400 leading-relaxed font-normal">
-              A clear, practical overview of the technologies I use daily to
-              build full-stack web applications and custom business software.
+            {/* Plain-language summary line summarizing capability in business terms */}
+            <p className="text-lg text-emerald-300 font-medium leading-relaxed">
+              I build complete web applications: from the design you see to the
+              systems running behind the scenes.
+            </p>
+
+            <p className="text-base text-slate-400 leading-relaxed font-normal">
+              Below is the primary toolchain I use daily to deliver custom
+              software, point-of-sale systems, and web applications for local
+              businesses. Each tool is selected for stability, speed, and low
+              maintenance overhead.
             </p>
           </div>
         </Container>
@@ -166,7 +159,7 @@ export default function SkillsPage() {
                       </div>
                     </div>
                     <span className="text-xs font-mono text-slate-500 self-start sm:self-auto">
-                      {category.skills.length} core competencies
+                      {category.skills.length} core tools
                     </span>
                   </div>
 
@@ -206,11 +199,11 @@ export default function SkillsPage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h2 className="text-xl font-bold text-slate-100">
-                Want to see this stack in action?
+                Want to see these tools in action?
               </h2>
               <p className="text-sm text-slate-400 mt-1">
-                Read how Next.js, PostgreSQL triggers, and Supabase power the
-                POS Shop platform.
+                Read how Next.js, PostgreSQL, and Supabase power the Perfect
+                Traders POS system.
               </p>
             </div>
             <Link

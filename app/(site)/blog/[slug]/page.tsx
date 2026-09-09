@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import Container from "@/components/Container";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
 import { getPostBySlug, getPosts, urlFor } from "@/sanity/client";
@@ -40,7 +40,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const coverUrl = post.coverImage ? urlFor(post.coverImage)?.width(1400).url() : null;
+  const coverUrl = post.coverImage
+    ? urlFor(post.coverImage)?.width(1400).url()
+    : null;
 
   return (
     <div className="py-12 md:py-20">
@@ -52,14 +54,14 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>cd .. /blog</span>
+            <span>Back to all articles</span>
           </Link>
         </div>
 
         {/* Clean Reading Article Container */}
         <article className="max-w-3xl mx-auto">
           {/* Header Metadata */}
-          <header className="space-y-6 pb-10 border-b border-[#1e2433]">
+          <header className="space-y-6 pb-8 border-b border-[#1e2433]">
             <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400">
               <span className="flex items-center gap-1.5 text-emerald-400">
                 <Calendar className="w-3.5 h-3.5" />
@@ -74,7 +76,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               <span>&bull;</span>
               <span className="flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5" />
-                {post.readingTime || "6 min read"}
+                {post.readingTime || "5 min read"}
               </span>
             </div>
 
@@ -82,9 +84,15 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               {post.title}
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed font-normal italic">
-              {post.excerpt}
-            </p>
+            {/* Plain-Language summary box at the very start of the post */}
+            {post.plainSummary && (
+              <div className="p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-slate-200 text-sm sm:text-base leading-relaxed">
+                <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1 font-semibold">
+                  Summary for Non-Technical Readers
+                </div>
+                <p>{post.plainSummary}</p>
+              </div>
+            )}
           </header>
 
           {/* Optional Cover Image */}
@@ -101,7 +109,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Body Content - Relaxed line height and reading width */}
+          {/* Body Content: Relaxed line height and reading width */}
           <div className="py-10 text-slate-300 leading-relaxed font-normal text-base sm:text-lg">
             <PortableTextRenderer value={post.body} />
           </div>
@@ -116,7 +124,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               <span>Back to all engineering articles</span>
             </Link>
             <div className="flex items-center gap-2 text-slate-500">
-              <span>Published via Sanity CMS</span>
+              <span>Managed via Sanity CMS</span>
             </div>
           </footer>
         </article>
@@ -124,4 +132,3 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     </div>
   );
 }
-

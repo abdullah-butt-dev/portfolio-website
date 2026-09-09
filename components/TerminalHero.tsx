@@ -5,38 +5,36 @@ import { Terminal, Copy, Check, FileCode, HardDrive } from "lucide-react";
 
 const codeSnippets = {
   profile: `// developer.config.ts
+// About Abdullah: Full-Stack Developer for local businesses
+
 export const developer = {
   name: "Abdullah",
   role: "Full-Stack Developer",
-  mission: "Building full-stack web apps & custom software for local businesses",
+  focus: "Building web apps & custom software that help local businesses run smoother",
   location: "Available Remote / Worldwide",
-  primaryStack: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "PostgreSQL",
-    "Supabase",
-    "Node.js",
-    "Tailwind CSS"
+  toolsIUse: [
+    "Next.js (fast website engine)",
+    "React (clean user screens)",
+    "PostgreSQL (secure business database)",
+    "Supabase (accounts & data storage)",
+    "Tailwind CSS (mobile-friendly styling)"
   ],
-  featuredBuild: {
+  activeProject: {
     name: "Perfect Traders POS",
-    type: "Point of Sale & Inventory Platform",
-    stack: ["Next.js 14", "Supabase", "PostgreSQL", "jsPDF"],
-    status: "production_deployed"
+    purpose: "Digital register & automated inventory for wholesale store",
+    status: "in_daily_use_by_store_staff"
   }
 };`,
-  terminal: `$ curl -s https://abdullahbuttdev.me/api/status | jq .
+  terminal: `$ check-status
 {
   "developer": "Abdullah",
   "role": "Full-Stack Developer",
-  "status": "available_for_projects",
-  "offerings": [
-    "Custom Business Management Software",
-    "Point of Sale & Inventory Systems",
-    "Fast, Responsive Web Applications"
+  "current_status": "open_for_new_business_projects",
+  "what_i_solve": [
+    "Replacing confusing spreadsheets with simple software",
+    "Point-of-sale registers and live inventory tracking",
+    "Fast, mobile-friendly websites that attract customers"
   ],
-  "featured_project": "https://perfecttraders.vercel.app/",
   "contact": "contact@abdullahbuttdev.me"
 }`,
 };
@@ -62,7 +60,7 @@ export default function TerminalHero() {
           <span className="w-3 h-3 rounded-full bg-[#10b981]/70 inline-block" />
           <span className="ml-3 text-[11px] text-slate-500 hidden sm:inline flex items-center gap-1.5">
             <Terminal className="w-3 h-3 text-slate-500" />
-            zsh — developer@portfolio
+            developer overview
           </span>
         </div>
 
@@ -77,7 +75,7 @@ export default function TerminalHero() {
             }`}
           >
             <FileCode className="w-3 h-3" />
-            <span>developer.ts</span>
+            <span>overview.ts</span>
           </button>
           <button
             onClick={() => setActiveTab("terminal")}
@@ -111,6 +109,9 @@ export default function TerminalHero() {
         {activeTab === "profile" ? (
           <div className="space-y-1">
             <div className="text-slate-500 italic">// developer.config.ts</div>
+            <div className="text-slate-500 italic">
+              // What I build and tools I use
+            </div>
             <div>
               <span className="text-purple-400">export const</span>{" "}
               <span className="text-yellow-300">developer</span> = &#123;
@@ -129,22 +130,23 @@ export default function TerminalHero() {
             <div className="pl-4">
               <span className="text-slate-400">mission:</span>{" "}
               <span className="text-emerald-300">
-                &quot;Building full-stack web apps &amp; custom software for
-                local businesses&quot;
+                &quot;Building custom web apps &amp; tools for local
+                businesses&quot;
               </span>
               ,
             </div>
             <div className="pl-4">
-              <span className="text-slate-400">primaryStack:</span> [
+              <span className="text-slate-400">toolsIUse:</span> [
               <span className="text-cyan-300">&quot;Next.js&quot;</span>,{" "}
               <span className="text-cyan-300">&quot;React&quot;</span>,{" "}
-              <span className="text-cyan-300">&quot;PostgreSQL&quot;</span>,{" "}
-              <span className="text-cyan-300">&quot;Supabase&quot;</span>,{" "}
-              <span className="text-cyan-300">&quot;Tailwind&quot;</span>
+              <span className="text-cyan-300">
+                &quot;PostgreSQL database&quot;
+              </span>
+              , <span className="text-cyan-300">&quot;Supabase&quot;</span>
               ],
             </div>
             <div className="pl-4">
-              <span className="text-slate-400">featuredProject:</span> &#123;
+              <span className="text-slate-400">featuredSystem:</span> &#123;
             </div>
             <div className="pl-8 text-slate-400">
               name:{" "}
@@ -154,16 +156,16 @@ export default function TerminalHero() {
               ,
             </div>
             <div className="pl-8 text-slate-400">
-              type:{" "}
+              purpose:{" "}
               <span className="text-slate-300">
-                &quot;Wholesale &amp; Retail POS System&quot;
+                &quot;Store register &amp; automated inventory&quot;
               </span>
               ,
             </div>
             <div className="pl-8 text-slate-400">
               status:{" "}
               <span className="text-emerald-400">
-                &quot;production_deployed&quot;
+                &quot;in_daily_production_use&quot;
               </span>
             </div>
             <div className="pl-4">&#125;</div>
@@ -173,9 +175,7 @@ export default function TerminalHero() {
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-emerald-400">
               <span>$</span>
-              <span className="text-slate-200">
-                curl -s https://abdullahbuttdev.me/api/status | jq .
-              </span>
+              <span className="text-slate-200">check-status</span>
             </div>
             <div className="text-slate-400 mt-2">&#123;</div>
             <div className="pl-4">
@@ -192,7 +192,7 @@ export default function TerminalHero() {
             <div className="pl-4">
               <span className="text-cyan-300">&quot;status&quot;</span>:{" "}
               <span className="text-emerald-400">
-                &quot;available_for_projects&quot;
+                &quot;ready_for_new_projects&quot;
               </span>
               ,
             </div>
@@ -200,13 +200,13 @@ export default function TerminalHero() {
               <span className="text-cyan-300">&quot;services&quot;</span>: [
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;Full-Stack Web Applications&quot;,
+              &quot;Point-of-sale registers and inventory tools&quot;,
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;Custom Business Software (POS &amp; Inventory)&quot;,
+              &quot;Automated billing and customer credit ledgers&quot;,
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;Automated Invoicing &amp; Operations&quot;
+              &quot;Fast web applications for business operations&quot;
             </div>
             <div className="pl-4">],</div>
             <div className="pl-4">
@@ -228,10 +228,10 @@ export default function TerminalHero() {
       <div className="px-4 py-2 border-t border-[#1e2433] bg-[#07080b] flex items-center justify-between text-[11px] text-slate-500">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
-          <span>STATUS: OPEN FOR NEW PROJECTS</span>
+          <span>STATUS: READY FOR NEW PROJECTS</span>
         </div>
         <span className="font-mono text-slate-500">
-          Next.js &bull; Supabase &bull; React
+          Plain Language &bull; Real Systems
         </span>
       </div>
     </div>

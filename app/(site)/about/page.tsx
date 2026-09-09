@@ -1,18 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Code2,
-  Laptop,
-  Database,
-  CheckCircle2,
-} from "lucide-react";
+import { ArrowRight, Code2, Laptop, Database } from "lucide-react";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Card from "@/components/Card";
 
 export const metadata = {
-  title: "About | Abdullah — Full-Stack Developer",
+  title: "About | Abdullah: Full-Stack Developer",
   description:
     "Background, practical philosophy, and technical experience of Abdullah, a full-stack developer building web apps and business software.",
 };
@@ -26,7 +20,7 @@ export default function AboutPage() {
           <div className="max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Full-Stack Developer
+              About Abdullah
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
@@ -37,7 +31,7 @@ export default function AboutPage() {
             <p className="text-lg text-slate-300 leading-relaxed font-normal">
               I am a full-stack developer specializing in Next.js, React,
               PostgreSQL, and Supabase. I focus on crafting reliable software
-              for local businesses, retail shops, and growing teams who need
+              for local businesses, retail stores, and growing teams who need
               customized internal tools, point of sale software, or fast
               customer-facing web applications.
             </p>
@@ -47,7 +41,7 @@ export default function AboutPage() {
 
       {/* Background & Approach */}
       <Section
-        badge="Approach &amp; Background"
+        badge="Approach and Values"
         title="Software Built for Everyday Reliability"
         subtitle="How I approach building web applications and business tooling from the ground up."
       >
@@ -57,13 +51,13 @@ export default function AboutPage() {
               <Database className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Rock-Solid Data Integrity
+              Rock-Solid Data Accuracy
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               Business software fails when financial balances or stock counts
               drift out of sync. I enforce transaction rules, balances, and
-              inventory movements directly at the PostgreSQL layer using
-              automated triggers and procedures.
+              inventory movements directly at the database level so numbers
+              always match reality.
             </p>
           </Card>
 
@@ -72,13 +66,12 @@ export default function AboutPage() {
               <Laptop className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Intuitive &amp; Fast Interfaces
+              Intuitive and Fast Screens
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               Whether it is a cashier processing twenty counter orders an hour
-              or a shop owner reviewing receivables on a smartphone, interfaces
-              must be responsive, keyboard-friendly, and dead simple to
-              navigate.
+              or a business owner reviewing receivables on a smartphone, screens
+              must be clear, responsive, and straightforward to navigate.
             </p>
           </Card>
 
@@ -87,13 +80,13 @@ export default function AboutPage() {
               <Code2 className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Zero Unnecessary Bloat
+              Zero Unnecessary Expenses
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
               I avoid heavy, overcomplicated frameworks or costly subscription
-              dependencies when clean code and modern edge web primitives can
-              achieve the same goal faster and for free (e.g. client-side PDF
-              synthesis with jsPDF).
+              dependencies when clean code can achieve the same goal faster and
+              for free, such as client-side PDF receipt generation without cloud
+              file storage costs.
             </p>
           </Card>
         </div>
@@ -101,8 +94,8 @@ export default function AboutPage() {
 
       {/* Experience & Practical Journey */}
       <Section
-        badge="Experience &amp; Work"
-        title="Experience &amp; Delivered Projects"
+        badge="Experience"
+        title="Experience and Delivered Projects"
         subtitle="Practical development experience building production systems and collaborating on software projects."
         className="border-t border-[#1e2433]/70 bg-[#08090d]"
       >
@@ -111,14 +104,14 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <h3 className="text-xl font-bold text-slate-100">
-                  Full-Stack Developer &amp; Software Contractor
+                  Full-Stack Developer and Software Contractor
                 </h3>
                 <div className="text-sm text-emerald-400 font-mono">
                   Independent / Local Business Client Work
                 </div>
               </div>
               <span className="text-xs font-mono px-3 py-1 rounded bg-[#141924] border border-[#1e2433] text-slate-300 self-start sm:self-auto">
-                2024 — Present
+                2024 to Present
               </span>
             </div>
 
@@ -134,7 +127,7 @@ export default function AboutPage() {
                   &bull;
                 </span>
                 <span>
-                  Delivered <strong>Perfect Traders POS</strong>: Next.js +
+                  Delivered <strong>Perfect Traders POS</strong>: Next.js and
                   Supabase platform with automated receivables, payables, stock
                   management, and client-side PDF receipts.
                 </span>
@@ -144,7 +137,7 @@ export default function AboutPage() {
                   &bull;
                 </span>
                 <span>
-                  Engineered transactional database triggers in PostgreSQL to
+                  Configured transactional database triggers in PostgreSQL to
                   guarantee atomic inventory movements and balance
                   recalculations.
                 </span>
@@ -155,7 +148,7 @@ export default function AboutPage() {
                 </span>
                 <span>
                   Built fast, mobile-friendly user interfaces optimized for
-                  sub-second page loads and straightforward checkout flows.
+                  rapid page loads and straightforward checkout flows.
                 </span>
               </li>
             </ul>

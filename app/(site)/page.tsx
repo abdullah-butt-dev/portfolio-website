@@ -9,7 +9,6 @@ import {
   Database,
   CheckCircle2,
   ExternalLink,
-  Code2,
 } from "lucide-react";
 import TerminalHero from "@/components/TerminalHero";
 import Section from "@/components/Section";
@@ -25,32 +24,36 @@ export default async function HomePage() {
 
   const services = [
     {
-      icon: Globe,
-      title: "Full-Stack Web Applications",
+      icon: Store,
+      title: "Point of Sale and Inventory Registers",
       description:
-        "Modern, responsive web applications built with Next.js, React, and TypeScript. Optimized for fast load times, mobile usability, and clean code that scales with your business.",
-      deliverables: ["Custom Web Apps", "Client Portals", "Responsive UI/UX"],
+        "Run your counter checkout without delays. Ring up orders quickly, track product stock counts automatically, and monitor customer credit balances with zero arithmetic mistakes.",
+      outcomes: [
+        "Faster counter checkout for retail and wholesale",
+        "Stock counts that adjust automatically on every sale",
+        "Customer credit and supplier balances tracked in one place",
+      ],
     },
     {
-      icon: Store,
-      title: "Custom Business Software & POS",
+      icon: Globe,
+      title: "Custom Web Applications and Client Portals",
       description:
-        "Tailored internal tools, point of sale (POS) registers, and inventory tracking systems designed to eliminate manual spreadsheet errors and speed up daily sales operations.",
-      deliverables: [
-        "Point of Sale Systems",
-        "Inventory Management",
-        "Receivables & Credit Tracking",
+        "Give your staff and clients a fast, modern online portal. Clean screens designed for computers and phones that make it easy to place orders, view invoices, or update records.",
+      outcomes: [
+        "Works smoothly on desktop computers, tablets, and phones",
+        "Simple interfaces that new employees can learn in minutes",
+        "Secure account logins for staff and wholesale customers",
       ],
     },
     {
       icon: Database,
-      title: "Database Architecture & Backend Systems",
+      title: "Automated Billing and Record Keeping",
       description:
-        "Secure relational databases using PostgreSQL and Supabase. Enforcing atomic data integrity at the database layer with automated PDF invoice generation and reliable APIs.",
-      deliverables: [
-        "PostgreSQL Schema Design",
-        "Supabase Backend Integration",
-        "Automated PDF Invoicing",
+        "Eliminate lost receipts and repetitive paperwork. Store your transaction history in a secure digital system and generate print-ready customer invoices on demand.",
+      outcomes: [
+        "Instant PDF customer receipts printed right from the browser",
+        "Zero expensive monthly cloud storage bills for invoice files",
+        "Clear financial records showing revenue and cash collections",
       ],
     },
   ];
@@ -58,43 +61,48 @@ export default async function HomePage() {
   const coreSkills = [
     {
       name: "Next.js",
-      category: "Framework",
-      desc: "App Router, SSR, Server Components",
+      role: "Application Framework",
+      benefit: "Fast-loading website pages and reliable online performance.",
     },
     {
       name: "React",
-      category: "Frontend",
-      desc: "Component architecture, hooks, state",
+      role: "User Interface Design",
+      benefit:
+        "Interactive, clean screens that update instantly without reloading.",
     },
     {
       name: "PostgreSQL",
-      category: "Database",
-      desc: "Triggers, stored procedures, schema design",
+      role: "Secure Database",
+      benefit:
+        "Guarantees your inventory numbers and financial ledgers never drift.",
     },
     {
       name: "Supabase",
-      category: "Backend / BaaS",
-      desc: "Auth, database functions, realtime",
-    },
-    {
-      name: "Node.js",
-      category: "Runtime",
-      desc: "Backend logic, server-side APIs",
-    },
-    {
-      name: "Express",
-      category: "Backend",
-      desc: "RESTful API services and middleware",
+      role: "Data and Account Hosting",
+      benefit: "Secure staff authentication and automated database management.",
     },
     {
       name: "Tailwind CSS",
-      category: "Styling",
-      desc: "Responsive, mobile-first design systems",
+      role: "Mobile-First Styling",
+      benefit: "Polished, clean layouts that look sharp on any screen size.",
     },
     {
-      name: "Git / GitHub",
-      category: "Tooling",
-      desc: "Version control, collaboration, CI/CD",
+      name: "Node.js and Express",
+      role: "Server Logic",
+      benefit:
+        "Connects your website screens to payment tools and business databases.",
+    },
+    {
+      name: "Git and GitHub",
+      role: "Code Management",
+      benefit:
+        "Version tracking and safe updates with zero downtime for your store.",
+    },
+    {
+      name: "Client PDF Tools",
+      role: "Document Generation",
+      benefit:
+        "Creates printable receipts in the cashier browser without extra fees.",
     },
   ];
 
@@ -106,31 +114,31 @@ export default async function HomePage() {
 
         <Container className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Headline & Intro */}
+            {/* Left Headline and Plain-Language Intro */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Abdullah &bull; Full-Stack Developer
+                Abdullah: Full-Stack Developer
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 leading-[1.12] font-sans">
                 Building{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                  full-stack web apps
+                  custom software and web applications
                 </span>{" "}
-                and custom software for local businesses.
+                for local businesses.
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-xl font-normal">
-                I help local businesses and founders replace messy spreadsheets
-                and manual processes with fast, reliable web applications and
-                custom management tools.
+                I help store owners and growing companies replace messy
+                paperwork and confusing spreadsheets with simple, dependable
+                software designed specifically for how they work.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/work/pos-shop"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.45)]"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                 >
                   View Featured Case Study
                   <ArrowRight className="w-4 h-4" />
@@ -143,19 +151,19 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Trust value prop points */}
+              {/* Value proposition points */}
               <div className="pt-4 flex flex-wrap gap-y-2 gap-x-6 text-xs font-mono text-slate-400">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  Production Tested
+                  Tested in Daily Production
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  Clean PostgreSQL Databases
+                  Accurate Financial Numbers
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  Fast Turnaround
+                  Straightforward to Learn
                 </span>
               </div>
             </div>
@@ -168,12 +176,12 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* 2. SERVICES SECTION — What I actually do (Before projects so visitors immediately understand the offer) */}
+      {/* 2. SERVICES SECTION: Outcomes first */}
       <Section
         id="services"
-        badge="Services &amp; Offerings"
+        badge="Services"
         title="What I Build for Businesses"
-        subtitle="Practical, reliable software solutions engineered to save hours of manual toil, eliminate calculation errors, and give you complete control of your operations."
+        subtitle="Practical software solutions created to save hours of manual toil, eliminate calculation errors, and give you complete control over your daily operations."
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, idx) => {
@@ -199,12 +207,12 @@ export default async function HomePage() {
 
                 <div className="pt-6 mt-6 border-t border-[#1e2433] space-y-2">
                   <div className="text-[11px] font-mono text-slate-500 uppercase tracking-wider">
-                    Common Deliverables
+                    How it helps your business
                   </div>
-                  <ul className="space-y-1 text-xs font-mono text-slate-300">
-                    {service.deliverables.map((item, dIdx) => (
-                      <li key={dIdx} className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                  <ul className="space-y-1.5 text-xs text-slate-300">
+                    {service.outcomes.map((item, dIdx) => (
+                      <li key={dIdx} className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1 shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -216,13 +224,13 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      {/* 3. FEATURED PROJECT / CASE STUDY — POS Shop Only */}
+      {/* 3. FEATURED PROJECT: POS Shop Only */}
       {featuredProject && (
         <Section
           id="featured-work"
-          badge="Featured Project &bull; Case Study"
-          title="Perfect Traders — Point of Sale System"
-          subtitle="A custom web application built for commercial wholesale and retail counter operations to replace paper ledgers with automated inventory and balances."
+          badge="Featured Project: Case Study"
+          title="Perfect Traders: Point of Sale System"
+          subtitle="A custom web application built for a wholesale and retail store to replace physical paper ledgers with automated inventory and balances."
           className="border-t border-[#1e2433]/70 bg-[#08090d]"
         >
           <div className="rounded-2xl border border-[#1e2433] bg-[#0c0f17] p-6 sm:p-10 lg:p-12 hover:border-emerald-500/30 transition-all">
@@ -231,11 +239,11 @@ export default async function HomePage() {
               <div className="lg:col-span-7 space-y-6">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
                   <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
-                    Production Deployed
+                    In Daily Production Use
                   </span>
                   <span className="text-slate-500">&bull;</span>
                   <span className="text-slate-400">
-                    Point of Sale &amp; Inventory Management
+                    Retail and Wholesale Counter System
                   </span>
                 </div>
 
@@ -244,37 +252,41 @@ export default async function HomePage() {
                 </h3>
 
                 <p className="text-base text-slate-300 leading-relaxed">
-                  {featuredProject.summary}
+                  {featuredProject.plainSummary}
                 </p>
 
-                {/* Key real problems & solutions */}
+                {/* Key real problems and solutions */}
                 <div className="space-y-3 pt-2">
                   <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                    Real System Highlights:
+                    What this software solves:
                   </div>
                   <ul className="space-y-2 text-sm text-slate-300">
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                       <span>
-                        <strong>Automated Receivables &amp; Payables:</strong>{" "}
-                        Tracks customer credit and supplier disbursement
-                        balances with split payments (paid, credit, partial).
+                        <strong>
+                          Tracks customer credit and supplier bills
+                          automatically:
+                        </strong>{" "}
+                        Records whether a sale was paid with cash, taken on
+                        credit, or partially paid, keeping exact records without
+                        ledger math.
                       </span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                       <span>
-                        <strong>PostgreSQL Database Triggers:</strong> Inventory
-                        updates and line total calculations are enforced
-                        atomically in PostgreSQL, preventing ledger drift.
+                        <strong>Stock numbers update with every sale:</strong>{" "}
+                        The database updates inventory counts immediately as
+                        items are rung up, preventing overselling.
                       </span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                       <span>
-                        <strong>Client-Side PDF Receipts:</strong> Invoices
-                        generate directly in the cashier&apos;s browser using
-                        jsPDF with zero cloud file-storage fees.
+                        <strong>Instant printable receipts:</strong> Customer
+                        receipts generate right inside the browser, saving the
+                        shop from paying monthly cloud file-storage fees.
                       </span>
                     </li>
                   </ul>
@@ -283,7 +295,7 @@ export default async function HomePage() {
                 {/* Tech stack */}
                 <div className="pt-4 border-t border-[#1e2433] space-y-2">
                   <div className="text-xs font-mono text-slate-500 uppercase tracking-wider">
-                    Tech Stack:
+                    Core Technologies Used:
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {featuredProject.techStack.map((tech, idx) => (
@@ -314,7 +326,7 @@ export default async function HomePage() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#1e2433] bg-[#090b10] text-slate-300 text-sm hover:text-white hover:border-slate-600 transition-colors"
                     >
-                      <span>Live Demo</span>
+                      <span>View Live Demo</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -326,7 +338,7 @@ export default async function HomePage() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#1e2433] bg-[#090b10] text-slate-400 text-sm hover:text-slate-200 transition-colors"
                     >
-                      <span>GitHub Repo</span>
+                      <span>GitHub Code</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -338,44 +350,43 @@ export default async function HomePage() {
                 <div className="flex items-center justify-between pb-3 border-b border-[#1e2433] text-slate-400">
                   <span className="flex items-center gap-1.5 text-emerald-400">
                     <Terminal className="w-3.5 h-3.5" />
-                    Feature Breakdown
+                    Store Operations Summary
                   </span>
                   <span>POS Shop</span>
                 </div>
 
                 <div className="space-y-3 text-slate-300">
-                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                  <div className="p-3 rounded bg-[#101420] border border-[#1e2433]">
                     <div className="text-emerald-400 font-semibold mb-1">
-                      /dashboard
+                      Store Dashboard
                     </div>
-                    <div className="text-slate-400 text-[11px]">
-                      Real-time revenue, profit estimates, cash inflow/outflow,
-                      and live receivables.
+                    <div className="text-slate-400 text-[11px] leading-relaxed">
+                      Shows daily revenue, estimated profit, cash in the drawer,
+                      and total customer credit owed at a glance.
                     </div>
                   </div>
-                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                  <div className="p-3 rounded bg-[#101420] border border-[#1e2433]">
                     <div className="text-emerald-400 font-semibold mb-1">
-                      /orders (Cashier Register)
+                      Cashier Register
                     </div>
-                    <div className="text-slate-400 text-[11px]">
-                      Instant customer search, stock badges, split payments,
-                      on-the-fly PDF invoice generation.
+                    <div className="text-slate-400 text-[11px] leading-relaxed">
+                      Instant item lookup, live stock counters, split cash and
+                      credit payments, and instant printed receipts.
                     </div>
                   </div>
-                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                  <div className="p-3 rounded bg-[#101420] border border-[#1e2433]">
                     <div className="text-emerald-400 font-semibold mb-1">
-                      /receivables &amp; /payables
+                      Customer and Supplier Ledgers
                     </div>
-                    <div className="text-slate-400 text-[11px]">
-                      Customer credit tracking, supplier debt monitoring, and
-                      overpayment safeguards.
+                    <div className="text-slate-400 text-[11px] leading-relaxed">
+                      Tracks who owes money to the shop and what bills the shop
+                      owes to suppliers, preventing overpayment.
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-2 text-[11px] text-slate-500">
-                  Built to solve everyday retail and wholesale business
-                  friction.
+                  Built to solve everyday retail and wholesale counter friction.
                 </div>
               </div>
             </div>
@@ -386,33 +397,38 @@ export default async function HomePage() {
               href="/work"
               className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors group"
             >
-              <span>View all projects &amp; case studies</span>
+              <span>View all projects and case studies</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </Section>
       )}
 
-      {/* 4. SKILLS SECTION */}
+      {/* 4. SKILLS SECTION: Plain language summary line first */}
       <Section
         id="skills"
-        badge="Technical Competencies"
-        title="Core Skills &amp; Stack"
-        subtitle="The toolchain I use daily to build full-stack web applications, secure APIs, and responsive frontends."
+        badge="Skills and Tools"
+        title="Technologies and Capabilities"
+        subtitle="I build complete web applications: from the clean design your customers see on screen, to the secure data systems running behind the scenes."
         className="border-t border-[#1e2433]/70 bg-[#0a0c12]"
       >
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {coreSkills.map((skill, idx) => (
-            <Card key={idx} className="p-4 sm:p-5 hover:border-emerald-500/40">
-              <div className="text-[11px] font-mono text-emerald-400 mb-1">
-                {skill.category}
+            <Card
+              key={idx}
+              className="p-5 hover:border-emerald-500/40 flex flex-col justify-between"
+            >
+              <div>
+                <div className="text-[11px] font-mono text-emerald-400 mb-1">
+                  {skill.role}
+                </div>
+                <h4 className="text-base font-bold text-slate-100 mb-1">
+                  {skill.name}
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {skill.benefit}
+                </p>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                {skill.name}
-              </h4>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                {skill.desc}
-              </p>
             </Card>
           ))}
         </div>
@@ -422,13 +438,13 @@ export default async function HomePage() {
             href="/skills"
             className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors group"
           >
-            <span>View full skills breakdown &amp; proficiency contexts</span>
+            <span>View full skills breakdown and business capabilities</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </Section>
 
-      {/* 5. CONTACT CTA BANNER (Immediately leads into Footer) */}
+      {/* 5. CONTACT CTA BANNER */}
       <section className="py-20 border-t border-[#1e2433] bg-[#07080b]">
         <Container>
           <div className="relative rounded-2xl border border-emerald-500/20 bg-gradient-to-b from-[#0e1420] to-[#0a0d14] p-8 sm:p-12 md:p-16 overflow-hidden">
@@ -437,17 +453,17 @@ export default async function HomePage() {
             <div className="max-w-2xl space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Let&apos;s Build Your Next Application
+                Let us discuss your project
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
-                Need a custom web app or business management tool?
+                Have a manual process or custom tool you need built?
               </h2>
 
               <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-                I can help you build custom inventory platforms, point-of-sale
-                software, customer portals, or modern websites. Reach out
-                directly and let&apos;s discuss your requirements.
+                Whether you need a custom store register, inventory tracker,
+                customer portal, or website, feel free to reach out. I can help
+                you map out the requirements and build a dependable solution.
               </p>
 
               <div className="pt-4 flex flex-wrap gap-4">
