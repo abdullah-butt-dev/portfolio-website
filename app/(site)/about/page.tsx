@@ -1,55 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Briefcase, Award, Code2, Server } from "lucide-react";
+import {
+  ArrowRight,
+  Code2,
+  Laptop,
+  Database,
+  CheckCircle2,
+} from "lucide-react";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Card from "@/components/Card";
 
 export const metadata = {
-  title: "About | Abdullah — Systems & Full-Stack Engineer",
-  description: "Bio, architectural philosophy, career journey, and engineering background.",
+  title: "About | Abdullah — Full-Stack Developer",
+  description:
+    "Background, practical philosophy, and technical experience of Abdullah, a full-stack developer building web apps and business software.",
 };
-
-const experiences = [
-  {
-    period: "2024 — Present",
-    role: "Staff Infrastructure & Distributed Systems Engineer",
-    company: "Distributed Cloud Systems",
-    summary:
-      "Leading the design and operational scalability of a global event ingestion mesh. Architecting low-latency stream processing pipelines and zero-trust credential distribution across multi-region Kubernetes deployments.",
-    highlights: [
-      "Scaled event telemetry pipeline from 10k to 85k+ events/sec with sub-5ms p99 latency.",
-      "Replaced static production secrets with dynamic SPIFFE/SPIRE cryptographic workload attestation.",
-      "Mentored senior engineering staff and authored architectural RFCs for service decoupling.",
-    ],
-    stack: ["Rust", "Go", "Kafka", "Kubernetes", "ClickHouse", "Terraform"],
-  },
-  {
-    period: "2022 — 2024",
-    role: "Senior Full-Stack & Platform Engineer",
-    company: "Nexus Technologies",
-    summary:
-      "Spearheaded core backend API services and developer platform tooling. Built distributed caching middleware and high-performance web applications using Next.js and TypeScript.",
-    highlights: [
-      "Constructed edge cache invalidation layer cutting global median TTFB by 93%.",
-      "Standardized microservice observability via OpenTelemetry, Grafana, and Prometheus.",
-      "Delivered real-time collaborative web interfaces supporting concurrent multi-user editing.",
-    ],
-    stack: ["TypeScript", "Next.js", "Node.js", "Redis", "GraphQL", "PostgreSQL", "Docker"],
-  },
-  {
-    period: "2020 — 2022",
-    role: "Backend Software Engineer",
-    company: "Vanguard Software Labs",
-    summary:
-      "Built resilient REST and gRPC microservices for financial reconciliation and batch ledger processing. Optimized database queries and automated CI/CD pipeline deployments.",
-    highlights: [
-      "Refactored relational locking mechanics to optimistic concurrency, eliminating deadlocks.",
-      "Reduced database query execution costs by 48% through index tuning and partition schemes.",
-    ],
-    stack: ["Go", "Python", "PostgreSQL", "Redis", "AWS", "Linux"],
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -60,36 +26,59 @@ export default function AboutPage() {
           <div className="max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Bio &amp; Philosophy
+              Full-Stack Developer
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
-              Systems engineer who values simplicity, predictability, and mechanical sympathy.
+              Building practical web applications and software that solve real
+              business bottlenecks.
             </h1>
 
             <p className="text-lg text-slate-300 leading-relaxed font-normal">
-              I have spent the past decade building and optimizing software systems. My core engineering philosophy is straightforward: the most resilient system is not the one with the most complex architecture, but the one whose failure modes are predictable, observable, and easy to reason about.
+              I am a full-stack developer specializing in Next.js, React,
+              PostgreSQL, and Supabase. I focus on crafting reliable software
+              for local businesses, retail shops, and growing teams who need
+              customized internal tools, point of sale software, or fast
+              customer-facing web applications.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Engineering Philosophy Cards */}
+      {/* Background & Approach */}
       <Section
-        badge="Operating Principles"
-        title="How I Approach Engineering"
-        subtitle="Foundational principles that govern every architecture decision and line of code."
+        badge="Approach &amp; Background"
+        title="Software Built for Everyday Reliability"
+        subtitle="How I approach building web applications and business tooling from the ground up."
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
             <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-              <Server className="w-5 h-5" />
+              <Database className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Predictable Failure Modes
+              Rock-Solid Data Integrity
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Every distributed service will eventually fail or degrade. I design systems with clear circuit breakers, graceful degradation pathways, backpressure signals, and explicit boundary timeouts.
+              Business software fails when financial balances or stock counts
+              drift out of sync. I enforce transaction rules, balances, and
+              inventory movements directly at the PostgreSQL layer using
+              automated triggers and procedures.
+            </p>
+          </Card>
+
+          <Card>
+            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+              <Laptop className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-100 mb-2">
+              Intuitive &amp; Fast Interfaces
+            </h3>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Whether it is a cashier processing twenty counter orders an hour
+              or a shop owner reviewing receivables on a smartphone, interfaces
+              must be responsive, keyboard-friendly, and dead simple to
+              navigate.
             </p>
           </Card>
 
@@ -98,117 +87,139 @@ export default function AboutPage() {
               <Code2 className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Mechanical Sympathy
+              Zero Unnecessary Bloat
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Understanding the underlying hardware, kernel namespaces, memory allocation patterns, and network socket semantics enables high performance without unnecessary abstraction layers.
-            </p>
-          </Card>
-
-          <Card>
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-              <Award className="w-5 h-5" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-100 mb-2">
-              Deep Observability
-            </h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Software you cannot inspect in production is software you cannot trust. Structured telemetry, distributed traces, and tail latency histograms are first-class engineering requirements.
+              I avoid heavy, overcomplicated frameworks or costly subscription
+              dependencies when clean code and modern edge web primitives can
+              achieve the same goal faster and for free (e.g. client-side PDF
+              synthesis with jsPDF).
             </p>
           </Card>
         </div>
       </Section>
 
-      {/* Experience Timeline */}
+      {/* Experience & Practical Journey */}
       <Section
-        badge="Career Progression"
-        title="Work Experience & Impact"
-        subtitle="Chronological timeline of engineering roles, technical responsibilities, and system outcomes."
+        badge="Experience &amp; Work"
+        title="Experience &amp; Delivered Projects"
+        subtitle="Practical development experience building production systems and collaborating on software projects."
         className="border-t border-[#1e2433]/70 bg-[#08090d]"
       >
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="relative pl-6 sm:pl-8 border-l-2 border-[#1e2433] hover:border-emerald-500/60 transition-colors group"
-            >
-              {/* Timeline marker */}
-              <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-[#1e2433] bg-[#08090d] group-hover:border-emerald-400 group-hover:bg-emerald-400/20 transition-all" />
-
-              <Card className="group-hover:border-emerald-500/30">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-100">
-                      {exp.role}
-                    </h3>
-                    <div className="text-sm font-medium text-emerald-400">
-                      {exp.company}
-                    </div>
-                  </div>
-                  <span className="inline-block px-3 py-1 rounded text-xs font-mono bg-[#141924] border border-[#1e2433] text-slate-300 self-start sm:self-auto">
-                    {exp.period}
-                  </span>
+        <div className="max-w-3xl space-y-8">
+          <Card className="p-6 sm:p-8 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-xl font-bold text-slate-100">
+                  Full-Stack Developer &amp; Software Contractor
+                </h3>
+                <div className="text-sm text-emerald-400 font-mono">
+                  Independent / Local Business Client Work
                 </div>
-
-                <p className="text-sm text-slate-300 leading-relaxed mb-4">
-                  {exp.summary}
-                </p>
-
-                <div className="space-y-2 mb-5">
-                  <div className="text-xs font-mono text-slate-500 uppercase tracking-wider">
-                    Key Outcomes:
-                  </div>
-                  <ul className="space-y-1.5 text-sm text-slate-400">
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-emerald-400 font-bold mt-0.5">&bull;</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-[#1e2433] flex flex-wrap gap-1.5">
-                  {exp.stack.map((t, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#10141f] border border-[#1e2433] text-slate-400"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </Card>
+              </div>
+              <span className="text-xs font-mono px-3 py-1 rounded bg-[#141924] border border-[#1e2433] text-slate-300 self-start sm:self-auto">
+                2024 — Present
+              </span>
             </div>
-          ))}
+
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Architecting and delivering customized business management
+              software, point-of-sale registers, and responsive web applications
+              for retail and commercial wholesale operations.
+            </p>
+
+            <ul className="space-y-2 text-sm text-slate-400 pt-2">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold mt-0.5">
+                  &bull;
+                </span>
+                <span>
+                  Delivered <strong>Perfect Traders POS</strong>: Next.js +
+                  Supabase platform with automated receivables, payables, stock
+                  management, and client-side PDF receipts.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold mt-0.5">
+                  &bull;
+                </span>
+                <span>
+                  Engineered transactional database triggers in PostgreSQL to
+                  guarantee atomic inventory movements and balance
+                  recalculations.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 font-bold mt-0.5">
+                  &bull;
+                </span>
+                <span>
+                  Built fast, mobile-friendly user interfaces optimized for
+                  sub-second page loads and straightforward checkout flows.
+                </span>
+              </li>
+            </ul>
+
+            <div className="pt-4 border-t border-[#1e2433] flex flex-wrap gap-1.5">
+              {[
+                "Next.js",
+                "React",
+                "PostgreSQL",
+                "Supabase",
+                "Tailwind CSS",
+                "TypeScript",
+                "Node.js",
+              ].map((t, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#10141f] border border-[#1e2433] text-slate-400"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Card>
+
+          {/* Brief mention of FlyRank internship */}
+          <div className="p-5 rounded-xl border border-[#1e2433] bg-[#0c0f17] text-xs font-mono text-slate-400 space-y-1">
+            <div className="text-slate-300 font-semibold">
+              Additional Experience
+            </div>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              Participated in the FlyRank remote software engineering internship
+              program, gaining hands-on exposure to collaborative Git workflows,
+              modern web toolchains, and agile development cycles.
+            </p>
+          </div>
         </div>
       </Section>
 
-      {/* CTA Strip */}
+      {/* Bottom CTA */}
       <section className="py-16 border-t border-[#1e2433] bg-[#0a0d14]">
         <Container>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <h2 className="text-2xl font-bold text-slate-100">
-                Interested in working together or discussing an architecture problem?
+                Have an idea or custom software project for your business?
               </h2>
               <p className="text-sm text-slate-400 mt-1">
-                Explore the technical case studies or reach out directly.
+                Explore the POS Shop case study or reach out directly to discuss
+                your goals.
               </p>
             </div>
             <div className="flex gap-4">
               <Link
-                href="/work"
+                href="/work/pos-shop"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-colors"
               >
-                View Case Studies
+                View POS Shop Case Study
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#1e2433] bg-[#0e121b] text-slate-200 text-sm hover:text-white transition-colors"
               >
-                Contact
+                Contact Me
               </Link>
             </div>
           </div>
@@ -217,4 +228,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

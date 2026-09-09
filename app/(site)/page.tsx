@@ -1,25 +1,107 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Terminal, Cpu, Database, ShieldCheck, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Terminal,
+  Globe,
+  Store,
+  Database,
+  CheckCircle2,
+  ExternalLink,
+  Code2,
+} from "lucide-react";
 import TerminalHero from "@/components/TerminalHero";
 import Section from "@/components/Section";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
-import { getCaseStudies, getPosts } from "@/sanity/client";
+import { getCaseStudies } from "@/sanity/client";
 
 export const revalidate = 60;
 
 export default async function HomePage() {
   const caseStudies = await getCaseStudies();
-  const featuredCaseStudies = caseStudies.slice(0, 3);
-  const posts = await getPosts();
-  const latestPosts = posts.slice(0, 2);
+  const featuredProject = caseStudies[0];
+
+  const services = [
+    {
+      icon: Globe,
+      title: "Full-Stack Web Applications",
+      description:
+        "Modern, responsive web applications built with Next.js, React, and TypeScript. Optimized for fast load times, mobile usability, and clean code that scales with your business.",
+      deliverables: ["Custom Web Apps", "Client Portals", "Responsive UI/UX"],
+    },
+    {
+      icon: Store,
+      title: "Custom Business Software & POS",
+      description:
+        "Tailored internal tools, point of sale (POS) registers, and inventory tracking systems designed to eliminate manual spreadsheet errors and speed up daily sales operations.",
+      deliverables: [
+        "Point of Sale Systems",
+        "Inventory Management",
+        "Receivables & Credit Tracking",
+      ],
+    },
+    {
+      icon: Database,
+      title: "Database Architecture & Backend Systems",
+      description:
+        "Secure relational databases using PostgreSQL and Supabase. Enforcing atomic data integrity at the database layer with automated PDF invoice generation and reliable APIs.",
+      deliverables: [
+        "PostgreSQL Schema Design",
+        "Supabase Backend Integration",
+        "Automated PDF Invoicing",
+      ],
+    },
+  ];
+
+  const coreSkills = [
+    {
+      name: "Next.js",
+      category: "Framework",
+      desc: "App Router, SSR, Server Components",
+    },
+    {
+      name: "React",
+      category: "Frontend",
+      desc: "Component architecture, hooks, state",
+    },
+    {
+      name: "PostgreSQL",
+      category: "Database",
+      desc: "Triggers, stored procedures, schema design",
+    },
+    {
+      name: "Supabase",
+      category: "Backend / BaaS",
+      desc: "Auth, database functions, realtime",
+    },
+    {
+      name: "Node.js",
+      category: "Runtime",
+      desc: "Backend logic, server-side APIs",
+    },
+    {
+      name: "Express",
+      category: "Backend",
+      desc: "RESTful API services and middleware",
+    },
+    {
+      name: "Tailwind CSS",
+      category: "Styling",
+      desc: "Responsive, mobile-first design systems",
+    },
+    {
+      name: "Git / GitHub",
+      category: "Tooling",
+      desc: "Version control, collaboration, CI/CD",
+    },
+  ];
 
   return (
     <div className="space-y-4">
-      {/* Hero Section */}
+      {/* 1. HERO SECTION */}
       <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden border-b border-[#1e2433]">
-        {/* Subtle grid background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e243315_1px,transparent_1px),linear-gradient(to_bottom,#1e243315_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
         <Container className="relative">
@@ -28,23 +110,29 @@ export default async function HomePage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Systems &bull; Backend &bull; Full-Stack
+                Abdullah &bull; Full-Stack Developer
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 leading-[1.1] font-sans">
-                Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">resilient systems</span> that scale without friction.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 leading-[1.12] font-sans">
+                Building{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                  full-stack web apps
+                </span>{" "}
+                and custom software for local businesses.
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-xl font-normal">
-                I design high-throughput distributed pipelines, zero-trust infrastructure, and clean, high-performance web applications with zero unnecessary complexity.
+              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-xl font-normal">
+                I help local businesses and founders replace messy spreadsheets
+                and manual processes with fast, reliable web applications and
+                custom management tools.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/work"
+                  href="/work/pos-shop"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.45)]"
                 >
-                  Explore Case Studies
+                  View Featured Case Study
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
@@ -55,24 +143,24 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Quick credibility indicators */}
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-[#1e2433]/70 font-mono text-xs">
-                <div>
-                  <div className="text-slate-200 font-bold text-base sm:text-lg">85k+</div>
-                  <div className="text-slate-500">req/s Throughput</div>
-                </div>
-                <div>
-                  <div className="text-slate-200 font-bold text-base sm:text-lg">&lt; 5ms</div>
-                  <div className="text-slate-500">p99 Latency</div>
-                </div>
-                <div>
-                  <div className="text-slate-200 font-bold text-base sm:text-lg">99.99%</div>
-                  <div className="text-slate-500">SLA Uptime</div>
-                </div>
+              {/* Trust value prop points */}
+              <div className="pt-4 flex flex-wrap gap-y-2 gap-x-6 text-xs font-mono text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  Production Tested
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  Clean PostgreSQL Databases
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  Fast Turnaround
+                </span>
               </div>
             </div>
 
-            {/* Right Terminal Motif (Strictly no profile photo) */}
+            {/* Right Terminal Motif */}
             <div className="lg:col-span-5 w-full">
               <TerminalHero />
             </div>
@@ -80,166 +168,268 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* Skills Strip / Core Competencies */}
-      <section className="py-10 border-b border-[#1e2433]/80 bg-[#0a0c12]">
-        <Container>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="font-mono text-xs text-slate-400 uppercase tracking-wider flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-emerald-400" />
-              Core Competencies
-            </div>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              {[
-                { name: "Distributed Systems", icon: Cpu },
-                { name: "High-Throughput Pipelines", icon: Zap },
-                { name: "Zero-Trust Security", icon: ShieldCheck },
-                { name: "Database Engineering", icon: Database },
-                { name: "Next.js & TypeScript", icon: Terminal },
-              ].map((skill, idx) => {
-                const Icon = skill.icon;
-                return (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e2433] bg-[#0e121a] text-xs font-mono text-slate-300"
-                  >
-                    <Icon className="w-3.5 h-3.5 text-emerald-400" />
-                    {skill.name}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Featured Case Studies Section */}
+      {/* 2. SERVICES SECTION — What I actually do (Before projects so visitors immediately understand the offer) */}
       <Section
-        id="case-studies"
-        badge="Selected Case Studies"
-        title="Production Architecture & Engineering"
-        subtitle="Detailed analyses of real systems problems, engineering trade-offs, and measurable business outcomes."
+        id="services"
+        badge="Services &amp; Offerings"
+        title="What I Build for Businesses"
+        subtitle="Practical, reliable software solutions engineered to save hours of manual toil, eliminate calculation errors, and give you complete control of your operations."
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredCaseStudies.map((cs) => (
-            <Link
-              key={cs._id}
-              href={`/work/${cs.slug.current}`}
-              className="group block h-full"
-            >
-              <Card className="h-full flex flex-col justify-between group-hover:border-emerald-500/50">
+          {services.map((service, idx) => {
+            const Icon = service.icon;
+            return (
+              <Card
+                key={idx}
+                className="flex flex-col justify-between hover:border-emerald-500/40"
+              >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono text-slate-500">
-                    <span className="text-emerald-400 font-semibold">
-                      0{cs.order || 1} // CASE STUDY
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-100 group-hover:text-emerald-300 transition-colors leading-snug">
-                    {cs.title}
+                  <h3 className="text-xl font-bold text-slate-100">
+                    {service.title}
                   </h3>
 
-                  <p className="text-sm text-slate-400 line-clamp-3 leading-relaxed">
-                    {cs.summary}
+                  <p className="text-sm text-slate-400 leading-relaxed">
+                    {service.description}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-[#1e2433] space-y-3">
+                <div className="pt-6 mt-6 border-t border-[#1e2433] space-y-2">
                   <div className="text-[11px] font-mono text-slate-500 uppercase tracking-wider">
-                    Tech Stack
+                    Common Deliverables
+                  </div>
+                  <ul className="space-y-1 text-xs font-mono text-slate-300">
+                    {service.deliverables.map((item, dIdx) => (
+                      <li key={dIdx} className="flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* 3. FEATURED PROJECT / CASE STUDY — POS Shop Only */}
+      {featuredProject && (
+        <Section
+          id="featured-work"
+          badge="Featured Project &bull; Case Study"
+          title="Perfect Traders — Point of Sale System"
+          subtitle="A custom web application built for commercial wholesale and retail counter operations to replace paper ledgers with automated inventory and balances."
+          className="border-t border-[#1e2433]/70 bg-[#08090d]"
+        >
+          <div className="rounded-2xl border border-[#1e2433] bg-[#0c0f17] p-6 sm:p-10 lg:p-12 hover:border-emerald-500/30 transition-all">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Main project overview */}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
+                    Production Deployed
+                  </span>
+                  <span className="text-slate-500">&bull;</span>
+                  <span className="text-slate-400">
+                    Point of Sale &amp; Inventory Management
+                  </span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 leading-snug">
+                  {featuredProject.title}
+                </h3>
+
+                <p className="text-base text-slate-300 leading-relaxed">
+                  {featuredProject.summary}
+                </p>
+
+                {/* Key real problems & solutions */}
+                <div className="space-y-3 pt-2">
+                  <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
+                    Real System Highlights:
+                  </div>
+                  <ul className="space-y-2 text-sm text-slate-300">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                      <span>
+                        <strong>Automated Receivables &amp; Payables:</strong>{" "}
+                        Tracks customer credit and supplier disbursement
+                        balances with split payments (paid, credit, partial).
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                      <span>
+                        <strong>PostgreSQL Database Triggers:</strong> Inventory
+                        updates and line total calculations are enforced
+                        atomically in PostgreSQL, preventing ledger drift.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                      <span>
+                        <strong>Client-Side PDF Receipts:</strong> Invoices
+                        generate directly in the cashier&apos;s browser using
+                        jsPDF with zero cloud file-storage fees.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Tech stack */}
+                <div className="pt-4 border-t border-[#1e2433] space-y-2">
+                  <div className="text-xs font-mono text-slate-500 uppercase tracking-wider">
+                    Tech Stack:
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {cs.techStack.slice(0, 3).map((tech, idx) => (
+                    {featuredProject.techStack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#141824] border border-[#1e2433] text-slate-300"
+                        className="px-2.5 py-1 rounded text-xs font-mono bg-[#121622] border border-[#1e2433] text-slate-300"
                       >
                         {tech}
                       </span>
                     ))}
-                    {cs.techStack.length > 3 && (
-                      <span className="px-1.5 py-0.5 rounded text-[11px] font-mono text-slate-500">
-                        +{cs.techStack.length - 3}
-                      </span>
-                    )}
                   </div>
                 </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
 
-        <div className="mt-10 text-center">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors group"
-          >
-            <span>View all case studies &amp; architectural deep-dives</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-      </Section>
+                {/* Action buttons */}
+                <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={`/work/${featuredProject.slug.current}`}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-colors"
+                  >
+                    Read Full Case Study
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
 
-      {/* Engineering Blog Preview */}
-      <Section
-        id="blog-preview"
-        badge="Engineering Writing"
-        title="Technical Thoughts & Notes"
-        subtitle="In-depth writings on systems internals, concurrency, workload identity, and distributed design patterns."
-        className="border-t border-[#1e2433]/70 bg-[#08090d]/60"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {latestPosts.map((post) => (
+                  {featuredProject.liveUrl && (
+                    <a
+                      href={featuredProject.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#1e2433] bg-[#090b10] text-slate-300 text-sm hover:text-white hover:border-slate-600 transition-colors"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+
+                  {featuredProject.githubUrl && (
+                    <a
+                      href={featuredProject.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#1e2433] bg-[#090b10] text-slate-400 text-sm hover:text-slate-200 transition-colors"
+                    >
+                      <span>GitHub Repo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Right side quick feature list card */}
+              <div className="lg:col-span-5 p-6 rounded-xl border border-[#1e2433] bg-[#090b10]/90 space-y-4 font-mono text-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-[#1e2433] text-slate-400">
+                  <span className="flex items-center gap-1.5 text-emerald-400">
+                    <Terminal className="w-3.5 h-3.5" />
+                    Feature Breakdown
+                  </span>
+                  <span>POS Shop</span>
+                </div>
+
+                <div className="space-y-3 text-slate-300">
+                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                    <div className="text-emerald-400 font-semibold mb-1">
+                      /dashboard
+                    </div>
+                    <div className="text-slate-400 text-[11px]">
+                      Real-time revenue, profit estimates, cash inflow/outflow,
+                      and live receivables.
+                    </div>
+                  </div>
+                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                    <div className="text-emerald-400 font-semibold mb-1">
+                      /orders (Cashier Register)
+                    </div>
+                    <div className="text-slate-400 text-[11px]">
+                      Instant customer search, stock badges, split payments,
+                      on-the-fly PDF invoice generation.
+                    </div>
+                  </div>
+                  <div className="p-2.5 rounded bg-[#101420] border border-[#1e2433]">
+                    <div className="text-emerald-400 font-semibold mb-1">
+                      /receivables &amp; /payables
+                    </div>
+                    <div className="text-slate-400 text-[11px]">
+                      Customer credit tracking, supplier debt monitoring, and
+                      overpayment safeguards.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 text-[11px] text-slate-500">
+                  Built to solve everyday retail and wholesale business
+                  friction.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
             <Link
-              key={post._id}
-              href={`/blog/${post.slug.current}`}
-              className="group block"
+              href="/work"
+              className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors group"
             >
-              <Card className="h-full flex flex-col justify-between group-hover:border-emerald-500/40">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-xs font-mono text-slate-500">
-                    <time dateTime={post.publishedAt}>
-                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
-                    <span>&bull;</span>
-                    <span className="text-emerald-400/80">{post.readingTime || "5 min read"}</span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                    {post.title}
-                  </h3>
-
-                  <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                </div>
-
-                <div className="pt-5 mt-4 flex items-center text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-                  <span>Read full breakdown</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Card>
+              <span>View all projects &amp; case studies</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+          </div>
+        </Section>
+      )}
+
+      {/* 4. SKILLS SECTION */}
+      <Section
+        id="skills"
+        badge="Technical Competencies"
+        title="Core Skills &amp; Stack"
+        subtitle="The toolchain I use daily to build full-stack web applications, secure APIs, and responsive frontends."
+        className="border-t border-[#1e2433]/70 bg-[#0a0c12]"
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {coreSkills.map((skill, idx) => (
+            <Card key={idx} className="p-4 sm:p-5 hover:border-emerald-500/40">
+              <div className="text-[11px] font-mono text-emerald-400 mb-1">
+                {skill.category}
+              </div>
+              <h4 className="text-base font-bold text-slate-100">
+                {skill.name}
+              </h4>
+              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                {skill.desc}
+              </p>
+            </Card>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <Link
-            href="/blog"
+            href="/skills"
             className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors group"
           >
-            <span>Browse all articles in the engineering archive</span>
+            <span>View full skills breakdown &amp; proficiency contexts</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </Section>
 
-      {/* Contact CTA Section */}
-      <section className="py-20 md:py-28 border-t border-[#1e2433] bg-[#07080b]">
+      {/* 5. CONTACT CTA BANNER (Immediately leads into Footer) */}
+      <section className="py-20 border-t border-[#1e2433] bg-[#07080b]">
         <Container>
           <div className="relative rounded-2xl border border-emerald-500/20 bg-gradient-to-b from-[#0e1420] to-[#0a0d14] p-8 sm:p-12 md:p-16 overflow-hidden">
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
@@ -247,15 +437,17 @@ export default async function HomePage() {
             <div className="max-w-2xl space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Let&apos;s Build Together
+                Let&apos;s Build Your Next Application
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
-                Have a critical system or project to architect?
+                Need a custom web app or business management tool?
               </h2>
 
               <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-                Whether you need advice on scaling microservices, tackling performance bottlenecks, or building a modern web product, feel free to reach out.
+                I can help you build custom inventory platforms, point-of-sale
+                software, customer portals, or modern websites. Reach out
+                directly and let&apos;s discuss your requirements.
               </p>
 
               <div className="pt-4 flex flex-wrap gap-4">
@@ -263,15 +455,15 @@ export default async function HomePage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                 >
-                  Send a Message
+                  Get in Touch
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link
-                  href="/about"
+                <a
+                  href="mailto:contact@abdullahbuttdev.me"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[#1e2433] bg-[#0c0f17] text-slate-300 font-medium text-sm hover:text-white transition-colors"
                 >
-                  Read About My Background
-                </Link>
+                  contact@abdullahbuttdev.me
+                </a>
               </div>
             </div>
           </div>
@@ -280,4 +472,3 @@ export default async function HomePage() {
     </div>
   );
 }
-

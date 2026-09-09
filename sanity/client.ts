@@ -1,6 +1,12 @@
 import { createClient } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
-import { apiVersion, dataset, projectId, useCdn, isSanityConfigured } from "./env";
+import {
+  apiVersion,
+  dataset,
+  projectId,
+  useCdn,
+  isSanityConfigured,
+} from "./env";
 
 export interface CaseStudy {
   _id: string;
@@ -13,6 +19,8 @@ export interface CaseStudy {
   techStack: string[];
   coverImage?: any;
   order?: number;
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
 export interface Post {
@@ -41,64 +49,46 @@ export function urlFor(source: any) {
   return builder.image(source);
 }
 
-// Fallback curated content for immediate review before Sanity project credentials are populated
+// Fallback curated content: ONLY real project (POS Shop) and real build-log post
 export const fallbackCaseStudies: CaseStudy[] = [
   {
-    _id: "case-study-1",
-    title: "High-Throughput Financial Event Processing Engine",
-    slug: { current: "high-throughput-event-engine" },
+    _id: "case-study-pos-shop",
+    title: "Perfect Traders — Point of Sale & Inventory Management System",
+    slug: { current: "pos-shop" },
     summary:
-      "Engineered an event-driven telemetry and transaction stream processing pipeline capable of handling 85,000+ events/sec with sub-5ms p99 latency.",
+      "A fast, responsive Point of Sale and inventory platform tailored for commercial wholesale and retail counter operations with automated receivables, payables, and on-demand PDF receipts.",
     problem:
-      "The legacy batch processing pipeline suffered from severe 45-minute processing delays during volatile market trading hours, cascading failure states in downstream reporting replicas, and unsustainable database connection exhaustion that violated client SLA guarantees.",
+      "A commercial wholesale and retail counter operation struggled with manual paper ledgers and disconnected spreadsheets. Cashiers had difficulty calculating split customer payments, tracking partial disbursements to suppliers, and maintaining accurate real-time inventory counts. Manual reconciliation led to frequent discrepancy errors between cash drawer counts and recorded customer credit, while generating physical invoices caused counter bottlenecks during peak transaction hours.",
     approach:
-      "Architected a distributed decoupled pipeline utilizing partitioned Kafka log streams, Rust-based deserialization and validation workers, and an in-memory transactional cache layer backed by RocksDB. Replaced heavyweight relational locks with optimistic concurrency and vectorized write batches to an append-only time-series store.",
+      "Engineered a dedicated Point of Sale application using Next.js 14 App Router, Supabase (PostgreSQL 15+), and Tailwind CSS. To guarantee absolute financial and inventory integrity, calculation logic was pushed directly into the database layer using PostgreSQL stored procedures and triggers:\n\n• Atomic Inventory Synchronization: Database triggers automatically adjust stock counts and log audit movements upon purchase and sale completions.\n• Automated Balance Calculations: Database procedures (pos_recalc_sale and pos_recalc_purchase) compute line totals, cash paid, amounts due, and statuses (paid, partial, credit) without relying on client-side state.\n• Client-Side PDF Generation: Integrated jsPDF to synthesize formatted, print-ready customer receipts directly in the cashier's browser, eliminating storage bucket bloat and avoiding recurring cloud file storage costs.\n• Dual-Direction Ledgering: Built dedicated customer receivables and supplier payables workflows to track partial payments, prevent overpayment, and log cash inflows/outflows accurately.",
     result:
-      "Reduced p99 processing latency from 45 minutes to 4.2 milliseconds. Slashed infrastructure compute overhead by 62% while scaling throughput capacity 12x under peak stress workloads with zero data loss or out-of-sequence anomalies.",
-    techStack: ["Rust", "Apache Kafka", "TypeScript", "ClickHouse", "Docker", "Prometheus"],
+      "Successfully deployed the platform to production on Vercel for live business operations. The system eliminated manual calculation errors by enforcing single-source-of-truth balances at the PostgreSQL level. Cashiers can complete sales and issue instantaneous PDF receipts in seconds, while business owners maintain real-time visibility over total revenue, receivables, payables, and stock levels through the live dashboard.",
+    techStack: [
+      "Next.js 14",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "jsPDF",
+      "Radix UI",
+    ],
+    liveUrl: "https://perfecttraders.vercel.app/",
+    githubUrl: "https://github.com/abdullah-butt-dev/pos-shop",
     order: 1,
-  },
-  {
-    _id: "case-study-2",
-    title: "Zero-Trust Infrastructure Orchestration Platform",
-    slug: { current: "zero-trust-orchestration-platform" },
-    summary:
-      "Designed an automated identity-aware secrets propagation and service-to-service cryptographic mesh across multi-region Kubernetes clusters.",
-    problem:
-      "Development teams were relying on static API keys embedded in environment variables across 40+ microservices, exposing critical infrastructure to accidental token leaks, manual quarterly rotation toil, and audit compliance vulnerabilities.",
-    approach:
-      "Implemented a dynamic ephemeral credential broker using HashiCorp Vault, SPIFFE/SPIRE workload attestation, and automated mTLS wire encryption. Authored custom Kubernetes admission webhooks to inject time-bound certificates directly into memory-backed tmpfs mounts transparently to application code.",
-    result:
-      "Completely eliminated 100% of persistent secrets and static API tokens across production environments. Automated compliance attestation reports saved an estimated 180 engineering hours quarterly during SOC 2 Type II audit cycles.",
-    techStack: ["Go", "Kubernetes", "HashiCorp Vault", "SPIFFE/SPIRE", "Terraform", "AWS"],
-    order: 2,
-  },
-  {
-    _id: "case-study-3",
-    title: "Distributed Edge CDN & Real-Time Cache Revalidation Engine",
-    slug: { current: "distributed-edge-cdn-engine" },
-    summary:
-      "Constructed a globally distributed edge caching middleware that invalidates and purges dynamic e-commerce catalog states within 35ms worldwide.",
-    problem:
-      "Global users outside North America were experiencing high TTFB (>780ms) for catalog updates, while aggressive origin caching caused stale inventory displays that led to out-of-stock checkout cart abandonment.",
-    approach:
-      "Constructed edge compute routines deployed across 300+ edge PoPs with automated surrogate key tagging and stale-while-revalidate execution. Combined edge key-value state checks with real-time WebSocket delta invalidation broadcasts dispatched upon catalog mutations.",
-    result:
-      "Lowered global median TTFB from 780ms to 48ms. Achieved a 94.8% edge cache hit ratio, shielding origin database clusters from 3.2M unnecessary queries daily during viral flash sale traffic spikes.",
-    techStack: ["TypeScript", "Next.js", "Cloudflare Workers", "Redis", "GraphQL", "Tailwind CSS"],
-    order: 3,
   },
 ];
 
 export const fallbackPosts: Post[] = [
   {
-    _id: "post-1",
-    title: "Understanding Ephemeral Workload Identity in Modern Clusters",
-    slug: { current: "understanding-ephemeral-workload-identity" },
+    _id: "post-pos-database-triggers",
+    title:
+      "Why We Pushed Inventory & Payment Balances to PostgreSQL Triggers in POS Shop",
+    slug: { current: "postgres-triggers-inventory-integrity" },
     excerpt:
-      "Why long-lived API tokens and static service keys are obsolete, and how cryptographic workload attestation provides zero-trust security without engineering friction.",
-    publishedAt: "2026-08-20T10:00:00.000Z",
-    readingTime: "6 min read",
+      "A build-log on why computing financial totals and inventory movements in application code causes race conditions in retail operations, and how PostgreSQL triggers solved it in POS Shop.",
+    publishedAt: "2026-09-05T10:00:00.000Z",
+    readingTime: "5 min read",
     body: [
       {
         _type: "block",
@@ -106,7 +96,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Securing microservice communications has historically revolved around static API keys, shared secrets, or long-lived service account tokens injected into environment variables. This pattern, while simple to deploy initially, creates systemic security debt as organizations scale.",
+            text: "When building Perfect Traders—a Point of Sale system for wholesale and retail counter operations—one of the earliest architectural decisions was where to calculate financial balances and update stock quantities.",
           },
         ],
       },
@@ -116,7 +106,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "The Fatal Flaws of Static Secrets",
+            text: "The Danger of Application-Layer Calculations in Retail",
           },
         ],
       },
@@ -126,7 +116,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Static credentials inevitably leak—into debug logs, Git commit histories, crash dumps, or memory snapshots. Furthermore, the operational overhead of rotating active keys across hundreds of running container pods often leads teams to postpone rotations indefinitely.",
+            text: "In many web tutorials, when an order is placed, the frontend or API route calculates the line item totals, deducts stock with a separate UPDATE query, and computes the customer's remaining balance. In a real shop with fast-paced counter sales or multiple tabs open, this approach is fragile. Network dropouts, concurrent sales of the same limited inventory, or partial updates can leave the database in an inconsistent state.",
           },
         ],
       },
@@ -136,7 +126,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Workload Attestation via Cryptographic Proof",
+            text: "Enforcing Integrity with Database Procedures",
           },
         ],
       },
@@ -146,7 +136,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Instead of asking 'What secret does this process possess?', modern zero-trust systems ask 'What proof can this process provide about who it actually is?'. By interrogating the Linux kernel namespaces, cgroups, and pod metadata through standard attestation agents (such as SPIRE), we can issue cryptographically signed, short-lived X.509 SVID certificates valid for only minutes at a time.",
+            text: "For POS Shop, we moved this responsibility directly into PostgreSQL using Supabase stored procedures and triggers (pos_adjust_inventory, pos_recalc_sale, and pos_recalc_purchase). When a sale record is inserted or modified, PostgreSQL recalculates the exact amount paid, balance due, and updates stock atomically within the same transaction.",
           },
         ],
       },
@@ -156,38 +146,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "The best secret is the one that never exists on persistent disk and expires before an attacker can even capture it.",
-          },
-        ],
-      },
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "By establishing identity at the platform level, developers no longer need to wire credentials into config maps or environment variables. Identity becomes an intrinsic property of the running workload.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    _id: "post-2",
-    title: "Designing Predictable Systems: Tail Latency and Concurrency Limits",
-    slug: { current: "tail-latency-and-concurrency-limits" },
-    excerpt:
-      "A deep dive into why microservices degrade under load, how queue buildup magnifies tail latency, and how adaptive concurrency limits preserve system stability.",
-    publishedAt: "2026-07-14T09:30:00.000Z",
-    readingTime: "8 min read",
-    body: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "When testing distributed services, engineers frequently celebrate average or median latency metrics. Yet in microservice topologies where a single user action touches dozens of downstream dependencies, the p99 or p99.9 tail latency is what truly governs user experience.",
+            text: "If a system's financial records or stock counts can disagree with reality, no amount of UI polish will save the user experience. The database must remain the single source of truth.",
           },
         ],
       },
@@ -197,7 +156,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "The Queueing Trap",
+            text: "Client-Side PDF Synthesis",
           },
         ],
       },
@@ -207,17 +166,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Most systems degrade because of uncontrolled inbound queues. When concurrency spikes past optimal processing bounds, CPU cache thrashing, context switching, and garbage collection pauses turn manageable traffic into cascading timeout disasters.",
-          },
-        ],
-      },
-      {
-        _type: "block",
-        style: "h2",
-        children: [
-          {
-            _type: "span",
-            text: "Little's Law and Adaptive Limits",
+            text: "Another key choice was handling receipts. Instead of generating PDFs on a server or saving binary files into a cloud storage bucket, we implemented client-side receipt generation with jsPDF. The browser renders the print-ready invoice on the fly from the validated sale data. This ensures instant customer receipts without consuming cloud storage quotas or paying unnecessary file-hosting fees.",
           },
         ],
       },
@@ -227,48 +176,7 @@ export const fallbackPosts: Post[] = [
         children: [
           {
             _type: "span",
-            text: "Applying TCP Vegas congestion avoidance algorithms at the application RPC layer allows services to dynamically discover their capacity envelope in real time. Rejecting excess load early with 429 / 503 preserves healthy throughput for all inflight requests.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    _id: "post-3",
-    title: "Mental Models for Schema Evolution in Event-Driven Architecture",
-    slug: { current: "schema-evolution-in-event-driven-architecture" },
-    excerpt:
-      "Strategies for preventing breaking changes across asynchronous distributed producers and consumers without coordination friction.",
-    publishedAt: "2026-06-02T14:15:00.000Z",
-    readingTime: "5 min read",
-    body: [
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "In distributed event architectures, events are immutable contracts stored permanently in commit logs. Once an event is published to a production stream, you cannot simply refactor fields as you would within a monolithic codebase.",
-          },
-        ],
-      },
-      {
-        _type: "block",
-        style: "h2",
-        children: [
-          {
-            _type: "span",
-            text: "Full Compatibility Guarantees",
-          },
-        ],
-      },
-      {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            _type: "span",
-            text: "By enforcing bidirectional compatibility via Protobuf or Avro schema registries, both older consumer versions and newer deployed consumers can safely process stream variations without runtime de-serialization panics.",
+            text: "Designing custom software for local businesses requires prioritizing reliability and low operational overhead. Pushing transactional rules to PostgreSQL and avoiding unnecessary third-party services delivered a fast, zero-fuss counter experience.",
           },
         ],
       },
@@ -298,14 +206,21 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
     if (!data || data.length === 0) return fallbackCaseStudies;
     return data;
   } catch (error) {
-    console.warn("Error fetching from Sanity, falling back to mock case studies:", error);
+    console.warn(
+      "Error fetching from Sanity, falling back to mock case studies:",
+      error,
+    );
     return fallbackCaseStudies;
   }
 }
 
-export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
+export async function getCaseStudyBySlug(
+  slug: string,
+): Promise<CaseStudy | null> {
   if (!isSanityConfigured) {
-    const found = fallbackCaseStudies.find((item) => item.slug.current === slug);
+    const found = fallbackCaseStudies.find(
+      (item) => item.slug.current === slug,
+    );
     return found || null;
   }
   try {
@@ -323,12 +238,19 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null
     }`;
     const data = await client.fetch<CaseStudy | null>(query, { slug });
     if (!data) {
-      return fallbackCaseStudies.find((item) => item.slug.current === slug) || null;
+      return (
+        fallbackCaseStudies.find((item) => item.slug.current === slug) || null
+      );
     }
     return data;
   } catch (error) {
-    console.warn("Error fetching case study from Sanity, using fallback:", error);
-    return fallbackCaseStudies.find((item) => item.slug.current === slug) || null;
+    console.warn(
+      "Error fetching case study from Sanity, using fallback:",
+      error,
+    );
+    return (
+      fallbackCaseStudies.find((item) => item.slug.current === slug) || null
+    );
   }
 }
 
@@ -350,7 +272,10 @@ export async function getPosts(): Promise<Post[]> {
     if (!data || data.length === 0) return fallbackPosts;
     return data;
   } catch (error) {
-    console.warn("Error fetching posts from Sanity, falling back to mock posts:", error);
+    console.warn(
+      "Error fetching posts from Sanity, falling back to mock posts:",
+      error,
+    );
     return fallbackPosts;
   }
 }
@@ -380,4 +305,3 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     return fallbackPosts.find((item) => item.slug.current === slug) || null;
   }
 }
-

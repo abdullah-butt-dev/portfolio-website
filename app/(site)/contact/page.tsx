@@ -2,21 +2,9 @@
 
 import React, { useState } from "react";
 import { Mail, Send, CheckCircle2, ArrowUpRight, Terminal } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import Container from "@/components/Container";
 import Card from "@/components/Card";
-
-function XIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -29,7 +17,6 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Front-end state simulation since no external DB beyond Sanity is requested
     setIsSubmitted(true);
   };
 
@@ -45,11 +32,11 @@ export default function ContactPage() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
-              Let&apos;s Discuss Architecture &amp; Engineering
+              Let&apos;s Build Software for Your Business
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed font-normal">
-              Whether you are looking to collaborate on high-concurrency systems, optimize critical bottlenecks, or explore technical leadership roles, my inbox is open.
+              Whether you need a custom Point of Sale, an inventory dashboard, or a modern full-stack web application, reach out directly. I respond promptly to all project inquiries.
             </p>
           </div>
         </Container>
@@ -67,13 +54,13 @@ export default function ContactPage() {
                   Direct Channels
                 </h2>
                 <p className="text-sm text-slate-400 leading-relaxed">
-                  Feel free to send a direct message through any of the following platforms or drop an email directly.
+                  Send a message directly via email or connect on LinkedIn and GitHub.
                 </p>
               </div>
 
               <div className="space-y-3">
                 <a
-                  href="mailto:contact@abdullah.dev"
+                  href="mailto:contact@abdullahbuttdev.me"
                   className="group flex items-center justify-between p-4 rounded-xl border border-[#1e2433] bg-[#0c0f17] hover:border-emerald-500/40 hover:bg-[#101420] transition-all"
                 >
                   <div className="flex items-center gap-3">
@@ -82,8 +69,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs font-mono text-slate-500">Email</div>
-                      <div className="text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-                        contact@abdullah.dev
+                      <div className="text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors break-all">
+                        contact@abdullahbuttdev.me
                       </div>
                     </div>
                   </div>
@@ -91,39 +78,19 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="https://github.com"
+                  href="https://linkedin.com/in/abdullahbuttdev"
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-center justify-between p-4 rounded-xl border border-[#1e2433] bg-[#0c0f17] hover:border-emerald-500/40 hover:bg-[#101420] transition-all"
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-[#141924] text-slate-300 border border-[#1e2535]">
-                      {/* <Github className="w-4 h-4" /> */}
-                    </div>
-                    <div>
-                      <div className="text-xs font-mono text-slate-500">GitHub</div>
-                      <div className="text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-                        github.com/abdullah
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
-                </a>
-
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-between p-4 rounded-xl border border-[#1e2433] bg-[#0c0f17] hover:border-emerald-500/40 hover:bg-[#101420] transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-[#141924] text-slate-300 border border-[#1e2535]">
-                      {/* <Linkedin className="w-4 h-4" /> */}
+                      <LinkedinIcon className="w-4 h-4" />
                     </div>
                     <div>
                       <div className="text-xs font-mono text-slate-500">LinkedIn</div>
                       <div className="text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-                        linkedin.com/in/abdullah
+                        linkedin.com/in/abdullahbuttdev
                       </div>
                     </div>
                   </div>
@@ -131,19 +98,19 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="https://x.com"
+                  href="https://github.com/abdullah-butt-dev"
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-center justify-between p-4 rounded-xl border border-[#1e2433] bg-[#0c0f17] hover:border-emerald-500/40 hover:bg-[#101420] transition-all"
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-[#141924] text-slate-300 border border-[#1e2535]">
-                      <XIcon className="w-4 h-4" />
+                      <GithubIcon className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs font-mono text-slate-500">X (Twitter)</div>
+                      <div className="text-xs font-mono text-slate-500">GitHub</div>
                       <div className="text-sm font-medium text-slate-200 group-hover:text-emerald-300 transition-colors">
-                        @abdullah_dev
+                        github.com/abdullah-butt-dev
                       </div>
                     </div>
                   </div>
@@ -155,10 +122,10 @@ export default function ContactPage() {
               <div className="p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 space-y-2">
                 <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  CURRENT STATUS: AVAILABLE
+                  STATUS: AVAILABLE FOR WORK
                 </div>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Open for full-time staff engineering roles, architecture consulting, and high-impact distributed systems projects.
+                  Open for contract projects, local business software development, custom internal dashboards, and full-stack web applications.
                 </p>
               </div>
             </div>
@@ -175,7 +142,7 @@ export default function ContactPage() {
                       Message Received
                     </h3>
                     <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
-                      Thank you for reaching out. I typically review technical inquiries and respond within 24 to 48 business hours.
+                      Thank you for reaching out. I review project inquiries regularly and will respond to your email promptly.
                     </p>
                     <button
                       onClick={() => {
@@ -191,10 +158,10 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <h3 className="text-xl font-bold text-slate-100 mb-1">
-                        Send an Inquiry
+                        Send a Project Inquiry
                       </h3>
                       <p className="text-xs text-slate-400">
-                        Fill out the form below and I&apos;ll get back to you promptly.
+                        Fill out the form below or write directly to <span className="text-emerald-400 font-mono">contact@abdullahbuttdev.me</span>.
                       </p>
                     </div>
 
@@ -208,7 +175,7 @@ export default function ContactPage() {
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Ada Lovelace"
+                          placeholder="Your Name"
                           className="w-full px-4 py-3 rounded-lg bg-[#08090d] border border-[#1e2433] text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 text-sm font-mono transition-colors"
                         />
                       </div>
@@ -222,7 +189,7 @@ export default function ContactPage() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="ada@domain.com"
+                          placeholder="your.email@business.com"
                           className="w-full px-4 py-3 rounded-lg bg-[#08090d] border border-[#1e2433] text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 text-sm font-mono transition-colors"
                         />
                       </div>
@@ -230,13 +197,13 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label className="block text-xs font-mono uppercase tracking-wider text-slate-400">
-                        Subject
+                        Project Type / Subject
                       </label>
                       <input
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        placeholder="Distributed system architecture / consulting"
+                        placeholder="Point of sale / Inventory / Custom web app"
                         className="w-full px-4 py-3 rounded-lg bg-[#08090d] border border-[#1e2433] text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 text-sm font-mono transition-colors"
                       />
                     </div>
@@ -250,7 +217,7 @@ export default function ContactPage() {
                         rows={5}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Outline the engineering scope, project context, or question..."
+                        placeholder="Tell me about your business, the problem you're looking to solve, and any timing requirements..."
                         className="w-full px-4 py-3 rounded-lg bg-[#08090d] border border-[#1e2433] text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/60 text-sm font-mono transition-colors resize-none"
                       />
                     </div>
@@ -260,7 +227,7 @@ export default function ContactPage() {
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                     >
                       <Send className="w-4 h-4" />
-                      <span>Dispatch Message</span>
+                      <span>Send Inquiry</span>
                     </button>
                   </form>
                 )}

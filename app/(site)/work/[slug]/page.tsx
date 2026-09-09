@@ -2,9 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { ArrowLeft, CheckCircle2, AlertTriangle, Lightbulb, Terminal, ArrowUpRight } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  AlertTriangle,
+  Lightbulb,
+  Terminal,
+  ArrowUpRight,
+  ExternalLink,
+} from "lucide-react";
 import Container from "@/components/Container";
-import Card from "@/components/Card";
 import { getCaseStudyBySlug, getCaseStudies, urlFor } from "@/sanity/client";
 
 interface PageProps {
@@ -40,13 +47,15 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const coverUrl = study.coverImage ? urlFor(study.coverImage)?.width(1400).url() : null;
+  const coverUrl = study.coverImage
+    ? urlFor(study.coverImage)?.width(1400).url()
+    : null;
 
   return (
     <div className="py-12 md:py-20">
       <Container>
         {/* Back navigation */}
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <Link
             href="/work"
             className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors"
@@ -54,6 +63,32 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>cd .. /work</span>
           </Link>
+
+          {/* Quick links to live demo & repo */}
+          <div className="flex items-center gap-3">
+            {study.liveUrl && (
+              <a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+              >
+                <span>Live Demo</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            {study.githubUrl && (
+              <a
+                href={study.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#1e2433] bg-[#0c0e14] text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <span>GitHub</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Case Study Headline Header */}
@@ -129,7 +164,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 <CheckCircle2 className="w-4 h-4" />
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 font-mono">
-                03. The Result &amp; Production Metrics
+                03. The Result &amp; Business Impact
               </h2>
             </div>
             <div className="pl-0 sm:pl-9">
@@ -141,7 +176,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* SECTION 4: Tech Stack Listed Briefly at the End */}
+          {/* SECTION 4: Tech Stack Listed Briefly at the End (not the headline) */}
           <section className="pt-10 border-t border-[#1e2433] space-y-4">
             <div className="flex items-center gap-2 text-xs font-mono text-slate-500 uppercase tracking-wider">
               <Terminal className="w-4 h-4 text-emerald-400" />
@@ -167,13 +202,13 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             className="inline-flex items-center gap-2 text-sm font-mono text-slate-400 hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to all case studies</span>
+            <span>Back to all projects</span>
           </Link>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
           >
-            <span>Discuss this architecture</span>
+            <span>Have a similar project? Get in touch</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
@@ -181,4 +216,3 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     </div>
   );
 }
-

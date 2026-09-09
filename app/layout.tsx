@@ -13,17 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abdullah | Systems & Full-Stack Engineer",
+  title: "Abdullah | Full-Stack Developer",
   description:
-    "Portfolio of Abdullah — Systems and Full-Stack engineer specializing in distributed systems, high-throughput pipelines, and minimalist web engineering.",
+    "Building full-stack web apps and custom software for local businesses. Next.js, React, PostgreSQL, and Supabase.",
   keywords: [
-    "Systems Engineer",
-    "Full-Stack",
-    "Distributed Systems",
+    "Full-Stack Developer",
+    "Web Applications",
+    "Custom Business Software",
+    "Point of Sale",
     "Next.js",
-    "TypeScript",
-    "Sanity",
-    "Portfolio",
+    "React",
+    "PostgreSQL",
+    "Supabase",
+    "Tailwind CSS",
   ],
 };
 

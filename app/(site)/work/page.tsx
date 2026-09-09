@@ -1,15 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Layers } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Layers, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
-import Section from "@/components/Section";
 import Card from "@/components/Card";
 import { getCaseStudies } from "@/sanity/client";
 
 export const metadata = {
-  title: "Case Studies & Architectural Work | Abdullah",
+  title: "Work & Case Studies | Abdullah — Full-Stack Developer",
   description:
-    "Technical case studies detailing problem definitions, engineering approaches, measurable results, and technology stacks.",
+    "Real-world full-stack web applications, point of sale software, and business management systems built with Next.js, React, PostgreSQL, and Supabase.",
 };
 
 export const revalidate = 60;
@@ -25,15 +24,18 @@ export default async function WorkPage() {
           <div className="max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Engineering Portfolio
+              Production Work &amp; Case Studies
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight">
-              Production Case Studies &amp; Architecture
+              Selected Projects &amp; Software Builds
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed font-normal">
-              A comprehensive collection of real-world distributed systems, performance optimizations, and security platforms. Every case study follows an engineering structure: the initial problem, the architectural approach, and verified production results.
+              A detailed review of practical web applications and custom
+              software built to solve actual business problems. Every case study
+              outlines the operational problem, technical approach, and tangible
+              results.
             </p>
           </div>
         </Container>
@@ -42,27 +44,42 @@ export default async function WorkPage() {
       {/* Case Studies List */}
       <div className="py-16 md:py-24">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {caseStudies.map((cs, idx) => (
-              <Link
+              <div
                 key={cs._id}
-                href={`/work/${cs.slug.current}`}
-                className="group block h-full"
+                className="h-full flex flex-col justify-between"
               >
-                <Card className="h-full flex flex-col justify-between group-hover:border-emerald-500/50">
+                <Card className="h-full flex flex-col justify-between hover:border-emerald-500/50 p-6 sm:p-8">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-slate-500">
                       <span className="text-emerald-400 font-semibold">
                         0{cs.order || idx + 1} // CASE STUDY
                       </span>
-                      <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      {cs.liveUrl && (
+                        <a
+                          href={cs.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 text-slate-400 hover:text-emerald-400 transition-colors"
+                          title="View Live Demo"
+                        >
+                          <span className="text-[11px]">Live Demo</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
                     </div>
 
-                    <h2 className="text-xl font-bold text-slate-100 group-hover:text-emerald-300 transition-colors leading-snug">
-                      {cs.title}
+                    <h2 className="text-2xl font-bold text-slate-100 leading-snug">
+                      <Link
+                        href={`/work/${cs.slug.current}`}
+                        className="hover:text-emerald-300 transition-colors"
+                      >
+                        {cs.title}
+                      </Link>
                     </h2>
 
-                    <p className="text-sm text-slate-400 leading-relaxed">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       {cs.summary}
                     </p>
                   </div>
@@ -72,20 +89,37 @@ export default async function WorkPage() {
                       {cs.techStack.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#141824] border border-[#1e2433] text-slate-300"
+                          className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[#141824] border border-[#1e2433] text-slate-300"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center text-xs font-mono text-emerald-400 group-hover:text-emerald-300 pt-1">
-                      <span>Read full case study</span>
-                      <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center justify-between pt-2">
+                      <Link
+                        href={`/work/${cs.slug.current}`}
+                        className="inline-flex items-center text-xs font-mono text-emerald-400 hover:text-emerald-300 group"
+                      >
+                        <span>Read full case study</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+
+                      {cs.githubUrl && (
+                        <a
+                          href={cs.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs font-mono text-slate-500 hover:text-slate-300 flex items-center gap-1 transition-colors"
+                        >
+                          <span>Code</span>
+                          <ArrowUpRight className="w-3 h-3" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </Card>
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -98,19 +132,29 @@ export default async function WorkPage() {
         </Container>
       </div>
 
-      {/* Footer Info Box */}
+      {/* Bottom Info Note */}
       <section className="py-14 border-t border-[#1e2433] bg-[#07080b]">
         <Container>
           <div className="p-6 rounded-xl border border-[#1e2433] bg-[#0b0d13] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>All case studies are managed via headless Sanity CMS at <Link href="/studio" className="text-emerald-400 underline underline-offset-2">/studio</Link>.</span>
+              <span>
+                Projects and case studies are managed via headless Sanity Studio
+                at{" "}
+                <Link
+                  href="/studio"
+                  className="text-emerald-400 underline underline-offset-2"
+                >
+                  /studio
+                </Link>
+                .
+              </span>
             </div>
             <Link
               href="/contact"
               className="text-slate-200 hover:text-emerald-400 transition-colors"
             >
-              Discuss technical challenges &rarr;
+              Discuss a custom project for your business &rarr;
             </Link>
           </div>
         </Container>
@@ -118,4 +162,3 @@ export default async function WorkPage() {
     </div>
   );
 }
-

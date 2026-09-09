@@ -1,21 +1,7 @@
-// "use client";
-
 import React from "react";
 import Link from "next/link";
 import { Terminal, Mail } from "lucide-react";
-
-function XIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Footer() {
   return (
@@ -32,38 +18,29 @@ export default function Footer() {
               <span className="text-emerald-400 font-bold">$</span>
             </div>
             <p className="text-sm text-slate-400 max-w-md leading-relaxed">
-              Software engineer focused on high-throughput backend architecture, resilient distributed systems, and clean minimal web engineering.
+              Full-Stack Developer building modern web applications and custom software for local businesses. Based on Next.js, React, PostgreSQL, and Supabase.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com"
+                href="https://github.com/abdullah-butt-dev"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-lg border border-[#1e2433] bg-[#0d1017] text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
                 aria-label="GitHub Profile"
               >
-                {/* <Github className="w-4 h-4" /> */}
+                <GithubIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/abdullahbuttdev"
                 target="_blank"
                 rel="noreferrer"
                 className="p-2 rounded-lg border border-[#1e2433] bg-[#0d1017] text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
                 aria-label="LinkedIn Profile"
               >
-                {/* <Linkedin className="w-4 h-4" /> */}
+                <LinkedinIcon className="w-4 h-4" />
               </a>
               <a
-                href="https://x.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-lg border border-[#1e2433] bg-[#0d1017] text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
-                aria-label="X / Twitter Profile"
-              >
-                <XIcon className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:contact@abdullah.dev"
+                href="mailto:contact@abdullahbuttdev.me"
                 className="p-2 rounded-lg border border-[#1e2433] bg-[#0d1017] text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
                 aria-label="Send Email"
               >
@@ -80,12 +57,12 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/work" className="hover:text-emerald-400 transition-colors">
-                  Case Studies
+                  Case Studies &amp; Work
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-emerald-400 transition-colors">
-                  About & Timeline
+                  About
                 </Link>
               </li>
               <li>
@@ -95,7 +72,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/blog" className="hover:text-emerald-400 transition-colors">
-                  Engineering Blog
+                  Build Logs &amp; Blog
                 </Link>
               </li>
               <li>
@@ -106,22 +83,30 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Architecture / CMS */}
+          {/* Contact / Inquiries */}
           <div className="space-y-3">
             <div className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Platform
+              Get in Touch
             </div>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/studio" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
-                  Sanity Studio (CMS)
-                </Link>
+              <li className="text-slate-300 font-mono text-xs">
+                <a
+                  href="mailto:contact@abdullahbuttdev.me"
+                  className="hover:text-emerald-400 transition-colors break-all"
+                >
+                  contact@abdullahbuttdev.me
+                </a>
               </li>
               <li className="text-xs text-slate-500 pt-1">
-                Stack: Next.js 16 (App Router), TypeScript, Tailwind CSS, Sanity v3.
+                Available for contract web projects and custom business systems.
               </li>
-              <li className="text-xs text-slate-500">
-                Deployment: Vercel Edge Network
+              <li>
+                <Link
+                  href="/studio"
+                  className="text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1 mt-2"
+                >
+                  Sanity Studio (CMS) &rarr;
+                </Link>
               </li>
             </ul>
           </div>
@@ -130,11 +115,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} Abdullah. Built with zero clutter.
+            &copy; {new Date().getFullYear()} Abdullah. All rights reserved.
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Systems Normal</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Available for local business &amp; web projects</span>
           </div>
         </div>
       </div>

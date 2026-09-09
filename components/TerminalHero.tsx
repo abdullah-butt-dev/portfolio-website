@@ -4,31 +4,40 @@ import React, { useState } from "react";
 import { Terminal, Copy, Check, FileCode, HardDrive } from "lucide-react";
 
 const codeSnippets = {
-  profile: `// engineer.config.ts
-export const engineer = {
+  profile: `// developer.config.ts
+export const developer = {
   name: "Abdullah",
-  title: "Systems & Full-Stack Engineer",
-  focus: ["Distributed Architectures", "High-Throughput APIs", "Clean Frontends"],
-  status: "available_for_new_roles",
-  currentLocation: "Global / Remote",
-  metrics: {
-    peakThroughput: "85,000 req/sec",
-    p99Latency: "< 5ms",
-    availability: "99.99%"
-  },
-  stack: ["TypeScript", "Rust", "Go", "Next.js", "Kubernetes", "Sanity"]
-};`,
-  terminal: `$ curl -s https://api.abdullah.dev/v1/health | jq .
-{
-  "status": "healthy",
-  "uptime": "99.99%",
-  "active_services": [
-    "distributed-event-engine",
-    "zero-trust-mesh",
-    "edge-cdn-middleware"
+  role: "Full-Stack Developer",
+  mission: "Building full-stack web apps & custom software for local businesses",
+  location: "Available Remote / Worldwide",
+  primaryStack: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "PostgreSQL",
+    "Supabase",
+    "Node.js",
+    "Tailwind CSS"
   ],
-  "latency_p99": "4.2ms",
-  "cms": "Sanity Headless CMS"
+  featuredBuild: {
+    name: "Perfect Traders POS",
+    type: "Point of Sale & Inventory Platform",
+    stack: ["Next.js 14", "Supabase", "PostgreSQL", "jsPDF"],
+    status: "production_deployed"
+  }
+};`,
+  terminal: `$ curl -s https://abdullahbuttdev.me/api/status | jq .
+{
+  "developer": "Abdullah",
+  "role": "Full-Stack Developer",
+  "status": "available_for_projects",
+  "offerings": [
+    "Custom Business Management Software",
+    "Point of Sale & Inventory Systems",
+    "Fast, Responsive Web Applications"
+  ],
+  "featured_project": "https://perfecttraders.vercel.app/",
+  "contact": "contact@abdullahbuttdev.me"
 }`,
 };
 
@@ -47,13 +56,13 @@ export default function TerminalHero() {
       {/* Terminal Window Header Bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#1e2433] bg-[#08090d]">
         <div className="flex items-center gap-2">
-          {/* Terminal control buttons */}
+          {/* Terminal control dots */}
           <span className="w-3 h-3 rounded-full bg-[#ef4444]/70 inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#f59e0b]/70 inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#10b981]/70 inline-block" />
           <span className="ml-3 text-[11px] text-slate-500 hidden sm:inline flex items-center gap-1.5">
             <Terminal className="w-3 h-3 text-slate-500" />
-            zsh — 80x24
+            zsh — developer@portfolio
           </span>
         </div>
 
@@ -68,7 +77,7 @@ export default function TerminalHero() {
             }`}
           >
             <FileCode className="w-3 h-3" />
-            <span>engineer.ts</span>
+            <span>developer.ts</span>
           </button>
           <button
             onClick={() => setActiveTab("terminal")}
@@ -79,7 +88,7 @@ export default function TerminalHero() {
             }`}
           >
             <HardDrive className="w-3 h-3" />
-            <span>health.sh</span>
+            <span>status.sh</span>
           </button>
         </div>
 
@@ -89,7 +98,11 @@ export default function TerminalHero() {
           className="p-1.5 rounded text-slate-400 hover:text-emerald-400 hover:bg-slate-800/60 transition-colors"
           title="Copy snippet"
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+          {copied ? (
+            <Check className="w-3.5 h-3.5 text-emerald-400" />
+          ) : (
+            <Copy className="w-3.5 h-3.5" />
+          )}
         </button>
       </div>
 
@@ -97,10 +110,10 @@ export default function TerminalHero() {
       <div className="p-4 sm:p-6 overflow-x-auto bg-[#090b10] text-slate-300 leading-relaxed font-mono">
         {activeTab === "profile" ? (
           <div className="space-y-1">
-            <div className="text-slate-500 italic">// engineer.config.ts</div>
+            <div className="text-slate-500 italic">// developer.config.ts</div>
             <div>
               <span className="text-purple-400">export const</span>{" "}
-              <span className="text-yellow-300">engineer</span> = &#123;
+              <span className="text-yellow-300">developer</span> = &#123;
             </div>
             <div className="pl-4">
               <span className="text-slate-400">name:</span>{" "}
@@ -108,78 +121,99 @@ export default function TerminalHero() {
             </div>
             <div className="pl-4">
               <span className="text-slate-400">role:</span>{" "}
-              <span className="text-emerald-400">&quot;Systems &amp; Full-Stack Engineer&quot;</span>,
+              <span className="text-emerald-400">
+                &quot;Full-Stack Developer&quot;
+              </span>
+              ,
             </div>
             <div className="pl-4">
-              <span className="text-slate-400">focus:</span> [
-              <span className="text-emerald-300">&quot;Distributed Systems&quot;</span>,{" "}
-              <span className="text-emerald-300">&quot;High-Throughput APIs&quot;</span>,{" "}
-              <span className="text-emerald-300">&quot;Resilient Cloud&quot;</span>
+              <span className="text-slate-400">mission:</span>{" "}
+              <span className="text-emerald-300">
+                &quot;Building full-stack web apps &amp; custom software for
+                local businesses&quot;
+              </span>
+              ,
+            </div>
+            <div className="pl-4">
+              <span className="text-slate-400">primaryStack:</span> [
+              <span className="text-cyan-300">&quot;Next.js&quot;</span>,{" "}
+              <span className="text-cyan-300">&quot;React&quot;</span>,{" "}
+              <span className="text-cyan-300">&quot;PostgreSQL&quot;</span>,{" "}
+              <span className="text-cyan-300">&quot;Supabase&quot;</span>,{" "}
+              <span className="text-cyan-300">&quot;Tailwind&quot;</span>
               ],
             </div>
             <div className="pl-4">
-              <span className="text-slate-400">status:</span>{" "}
-              <span className="text-emerald-400">&quot;available_for_new_roles&quot;</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-slate-400">metrics:</span> &#123;
+              <span className="text-slate-400">featuredProject:</span> &#123;
             </div>
             <div className="pl-8 text-slate-400">
-              peakThroughput: <span className="text-cyan-300">&quot;85k req/s&quot;</span>,
+              name:{" "}
+              <span className="text-emerald-400">
+                &quot;Perfect Traders POS&quot;
+              </span>
+              ,
             </div>
             <div className="pl-8 text-slate-400">
-              p99Latency: <span className="text-cyan-300">&quot;&lt; 5ms&quot;</span>,
+              type:{" "}
+              <span className="text-slate-300">
+                &quot;Wholesale &amp; Retail POS System&quot;
+              </span>
+              ,
             </div>
             <div className="pl-8 text-slate-400">
-              availability: <span className="text-cyan-300">&quot;99.99%&quot;</span>
+              status:{" "}
+              <span className="text-emerald-400">
+                &quot;production_deployed&quot;
+              </span>
             </div>
-            <div className="pl-4">&#125;,</div>
-            <div className="pl-4">
-              <span className="text-slate-400">stack:</span> [
-              <span className="text-emerald-400">&quot;Next.js&quot;</span>,{" "}
-              <span className="text-emerald-400">&quot;TypeScript&quot;</span>,{" "}
-              <span className="text-emerald-400">&quot;Sanity&quot;</span>,{" "}
-              <span className="text-emerald-400">&quot;Rust&quot;</span>,{" "}
-              <span className="text-emerald-400">&quot;Kubernetes&quot;</span>
-              ]
-            </div>
+            <div className="pl-4">&#125;</div>
             <div>&#125;;</div>
           </div>
         ) : (
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-emerald-400">
               <span>$</span>
-              <span className="text-slate-200">curl -s https://api.abdullah.dev/v1/health | jq .</span>
+              <span className="text-slate-200">
+                curl -s https://abdullahbuttdev.me/api/status | jq .
+              </span>
             </div>
             <div className="text-slate-400 mt-2">&#123;</div>
             <div className="pl-4">
+              <span className="text-cyan-300">&quot;developer&quot;</span>:{" "}
+              <span className="text-emerald-400">&quot;Abdullah&quot;</span>,
+            </div>
+            <div className="pl-4">
+              <span className="text-cyan-300">&quot;role&quot;</span>:{" "}
+              <span className="text-emerald-400">
+                &quot;Full-Stack Developer&quot;
+              </span>
+              ,
+            </div>
+            <div className="pl-4">
               <span className="text-cyan-300">&quot;status&quot;</span>:{" "}
-              <span className="text-emerald-400">&quot;healthy&quot;</span>,
+              <span className="text-emerald-400">
+                &quot;available_for_projects&quot;
+              </span>
+              ,
             </div>
             <div className="pl-4">
-              <span className="text-cyan-300">&quot;uptime&quot;</span>:{" "}
-              <span className="text-emerald-400">&quot;99.99%&quot;</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-cyan-300">&quot;active_services&quot;</span>: [
+              <span className="text-cyan-300">&quot;services&quot;</span>: [
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;distributed-event-engine&quot;,
+              &quot;Full-Stack Web Applications&quot;,
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;zero-trust-mesh&quot;,
+              &quot;Custom Business Software (POS &amp; Inventory)&quot;,
             </div>
             <div className="pl-8 text-slate-400">
-              &quot;edge-cdn-middleware&quot;
+              &quot;Automated Invoicing &amp; Operations&quot;
             </div>
             <div className="pl-4">],</div>
             <div className="pl-4">
-              <span className="text-cyan-300">&quot;latency_p99&quot;</span>:{" "}
-              <span className="text-emerald-400">&quot;4.2ms&quot;</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-cyan-300">&quot;cms&quot;</span>:{" "}
-              <span className="text-emerald-400">&quot;Sanity Headless CMS&quot;</span>
+              <span className="text-cyan-300">&quot;contact&quot;</span>:{" "}
+              <span className="text-emerald-400">
+                &quot;contact@abdullahbuttdev.me&quot;
+              </span>
             </div>
             <div className="text-slate-400">&#125;</div>
             <div className="flex items-center gap-2 text-emerald-400 pt-3">
@@ -194,11 +228,12 @@ export default function TerminalHero() {
       <div className="px-4 py-2 border-t border-[#1e2433] bg-[#07080b] flex items-center justify-between text-[11px] text-slate-500">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
-          <span>CONNECTED &bull; UTF-8</span>
+          <span>STATUS: OPEN FOR NEW PROJECTS</span>
         </div>
-        <span className="font-mono text-slate-500">LF &bull; TypeScript / JSON</span>
+        <span className="font-mono text-slate-500">
+          Next.js &bull; Supabase &bull; React
+        </span>
       </div>
     </div>
   );
 }
-
